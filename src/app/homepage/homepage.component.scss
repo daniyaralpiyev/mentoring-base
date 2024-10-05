@@ -66,7 +66,7 @@
     box-shadow: 0px 20px 50px 50px #3C3C3B12; // Добавляет тень к элементу.
     max-height: 428px;
     max-width: 421px;
-    background-image: url(/assets/image19.png); // выводим картинку и задаем значения
+    background-image: url(/assets/Building-finishing-tools.png); // выводим картинку и задаем значения
     background-repeat: no-repeat; // Предотвращает повторение фонового изображения по горизонтали и вертикали
     overflow: hidden; // Скрывает содержимое, выходящее за пределы элемента
     background-position-y: bottom;
@@ -189,7 +189,7 @@
 }
 
 .text-container4 {
-    background-image: url(/assets/image15.png);
+    background-image: url(/assets/Rosettes-and-switches.png);
     background-repeat: no-repeat;
     background-position-y: bottom;
     background-position-x: left;
@@ -485,6 +485,7 @@
     flex-direction: column;
     max-width: 1350px;
     margin: 0 auto;
+    margin-bottom: 50px;
 }
 
 .content-new-products {
