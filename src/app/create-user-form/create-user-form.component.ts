@@ -24,10 +24,10 @@ export class CreateUserFormComponent {
     // [Validators.email] поле ожидает обязательное заполнение c @
     // [Validators.minLength(5)] поле ожидает минимум 5 символов
     // Validators.pattern("^[a-zA-Zа-яА-я.]*$") ожидает только латиницу и русский алфавит в верхнем и нижнем регистре от A до Z и от А до Я
-    name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Zа-яА-я.]*$")]),
+    name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z.]*$")]),
     email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(5),]),
-    website: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Zа-яА-я.]*$")]),
-    companyName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Zа-яА-я.]*$")]),
+    website: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Z.]*$")]),
+    companyName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z.]*$")]),
   });
 
   public submitForm(): void {

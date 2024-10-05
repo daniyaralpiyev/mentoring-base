@@ -30,10 +30,10 @@ export class CreateTodoFormComponent {
 
   public form = new FormGroup({
     // Validators.pattern("^[0-9]*$") ожидает только цифры
-    userId: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[a-zA-Zа-яА-я.]*$")]),
+    userId: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[a-zA-Z.]*$")]),
     id: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[0-9]*$")]),
-    title: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Zа-яА-я.]*$")]),
-    completed: new FormControl('', [Validators.required, completedValidator(), Validators.pattern("^[a-zA-Zа-яА-я]*$")]),
+    title: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Z.]*$")]),
+    completed: new FormControl('', [Validators.required, completedValidator(), Validators.pattern("^[a-zA-Z]*$")]),
   });
 
   // Метод для получения значения completed
