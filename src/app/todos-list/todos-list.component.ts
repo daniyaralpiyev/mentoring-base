@@ -4,13 +4,7 @@ import { TodoCardComponent } from './todo-card/todo-card.component';
 import { TodosApiService } from '../todos-api.service';
 import { TodosService } from '../todos.service';
 import { CreateTodoFormComponent } from '../create-todo-form/create-todo-form.component';
-
-export interface Todos {
-  userId: number,
-  id: number,
-  title: string,
-  completed: boolean
-}
+import { TodoInterface } from '../interfaces/todo-interfaces';
 
 @Component({
   selector: 'app-todos-list',
@@ -35,18 +29,17 @@ export class TodosListComponent {
     )
   }
 
-  deleteTodo_list(id: number) {
+  deleteTodo(id: number) {
     // удаления данных используя метод deleteTodo
     this.todosService.deleteTodo(id);
   }
 
-  createTodoList(formData: Todos) {
+  createTodo(formData: TodoInterface) {
     this.todosService.createTodo({
       userId: formData.userId,
       id: formData.id,
       title: formData.title,
       completed: formData.completed,
     });
-    console.log('Данные формы: ', formData);
   }
 }

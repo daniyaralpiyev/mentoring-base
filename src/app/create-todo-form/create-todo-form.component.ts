@@ -1,7 +1,6 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 // Валидатор для поля 'completed' - только "yes" или "no"
@@ -30,10 +29,11 @@ export class CreateTodoFormComponent {
   createTodoForm = new EventEmitter();
 
   public form = new FormGroup({
-    userId: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    id: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    title: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    completed: new FormControl('', [Validators.required, completedValidator()]),
+    // Validators.pattern("^[0-9]*$") ожидает только цифры
+    userId: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[a-zA-Zа-яА-я.]*$")]),
+    id: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[0-9]*$")]),
+    title: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Zа-яА-я.]*$")]),
+    completed: new FormControl('', [Validators.required, completedValidator(), Validators.pattern("^[a-zA-Zа-яА-я]*$")]),
   });
 
   // Метод для получения значения completed

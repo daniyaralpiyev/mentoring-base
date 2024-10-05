@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { User } from './users-list/users-list.component';
 import { BehaviorSubject } from 'rxjs';
+import { UserInterface } from './interfaces/user-interfaces';
 
 // Паттерн singleton это паттерн проектирования, гарантирующий, что у класса будет только один экземпляр для всего приложения
 @Injectable({ providedIn: 'root' })
@@ -10,7 +10,7 @@ export class UsersService {
   // <User[]> это generic, указывающий, что BehaviorSubject будет работать с массивом объектов типа User.
   // переменная со знаком $ говорит что это переменная, которая представляет собой экземпляр BehaviorSubject.
   // BehaviorSubject это один из типов Subject'ов в RxJS (библиотека для реактивного программирования в Angular).
-  private usersSubject$ = new BehaviorSubject<User[]>([]); // [] — начальное значение, переданное в BehaviorSubject. В данном случае это пустой массив
+  private usersSubject$ = new BehaviorSubject<UserInterface[]>([]); // [] — начальное значение, переданное в BehaviorSubject. В данном случае это пустой массив
 
   // можем обратиться к переменной users$ вне файла, использование asObservable()
   // делает так, что другие частикода не могут изменять данные напрямую,
@@ -19,14 +19,14 @@ export class UsersService {
 
   // установка юзеров
   // вместо User[] можем писать Array<User> кому как удобно без разницы
-  setUsers(users: User[]) {
+  setUsers(users: UserInterface[]) {
     // next() метод используется для обновления данных в BehaviorSubject.
     this.usersSubject$.next(users);
   }
 
   // изменение юзера
   // перезаписывает весь массив при этом элемент который изменили подменяет на новый а все остальные не трогает
-  editUser(editedUser: User) {
+  editUser(editedUser: UserInterface) {
     this.usersSubject$.next(
       this.usersSubject$.value.map(
         user => {
@@ -44,24 +44,14 @@ export class UsersService {
 
   // создание юзера
   // перезаписывает на новый массив который равен старому но к нему добавляет новый элемент
-  createUser(user: User) {
+  createUser(user: UserInterface) {
     // проверка на одинаковые email
-    const existingName = this.usersSubject$.value.find(
-      (currentElement) => currentElement.name === user.name
-    );
     const existingEmail = this.usersSubject$.value.find(
       (currentElement) => currentElement.email === user.email
     );
-    const existingWebsite = this.usersSubject$.value.find(
-      (currentElement) => currentElement.website === user.website
-    );
 
-    if (existingName !== undefined) {
-      alert('Такое имя уже зарегестрирован!');
-    } else if (existingEmail !== undefined) {
+    if (existingEmail !== undefined) {
       alert('Такой email уже зарегестрирован!');
-    } else if (existingWebsite !== undefined) {
-      alert('Такой веб-сайт уже зарегестрирован!');
     } else {
       // next перезаписывает данные по новому и возвращает обновленный массив
       // spread operator ... - это оператор расширения,

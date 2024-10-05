@@ -4,39 +4,7 @@ import { UsersApiService } from "../users-api.service";
 import { UserCardComponent } from "./user-card/user-card.component";
 import { UsersService } from "../users.service";
 import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
-
-export interface User {
-    id: number;
-    name: string;
-    username?: string;
-    email: string;
-    address?: {
-        street: string;
-        suite: string;
-        city: string;
-        zipcode: string;
-        geo: {
-            lat: string;
-            lng: string;
-        };
-    };
-    phone?: string;
-    website: string;
-    company: {
-        name: string;
-        catchPhrase?: string;
-        bs?: string;
-    };
-}
-
-// Типизируем interface
-export interface CreateUserInterface {
-    id: number;
-    name: string;
-    email: string;
-    website: string;
-    companyName: string;
-}
+import { CreateUserInterface } from "../interfaces/user-interfaces";
 
 @Component({
     selector: 'app-users-list',
@@ -60,16 +28,16 @@ export class UsersListComponent {
         });
 
         this.usersService.users$.subscribe(
-            users => console.log(users)
+            users => users
         );
     }
 
-    deleteUser_list(id: number) {
+    deleteUser(id: number) {
         // удаление id используя метод deleteUser из файла users.service.ts
         this.usersService.deleteUser(id);
     }
 
-    createUserList(formData: CreateUserInterface) {
+    createUser(formData: CreateUserInterface) {
         this.usersService.createUser({
             id: new Date().getTime(),
             name: formData.name,

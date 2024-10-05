@@ -20,13 +20,14 @@ export class CreateUserFormComponent {
   // класс FormGroup обеденяет все FormControl так как FormControl это элемент класса FormGroup
   public form = new FormGroup({
     // каждую переменную класс FormControl будем передавать в файле html в тег input по названиям
-    // '', [Validators.required] поле обязательно для заполнения
-    // '', [Validators.email] поле ожидает обязательное заполнение c @
-    // '', [Validators.minLength(5)] поле ожидает минимум 5 символов
-    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(5)]),
-    website: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    companyName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    // [Validators.required] поле обязательно для заполнения
+    // [Validators.email] поле ожидает обязательное заполнение c @
+    // [Validators.minLength(5)] поле ожидает минимум 5 символов
+    // Validators.pattern("^[a-zA-Zа-яА-я.]*$") ожидает только латиницу и русский алфавит в верхнем и нижнем регистре от A до Z и от А до Я
+    name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Zа-яА-я.]*$")]),
+    email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(5),]),
+    website: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Zа-яА-я.]*$")]),
+    companyName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Zа-яА-я.]*$")]),
   });
 
   public submitForm(): void {
