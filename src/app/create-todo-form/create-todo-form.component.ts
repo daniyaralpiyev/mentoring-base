@@ -30,7 +30,7 @@ export class CreateTodoFormComponent {
 
   public form = new FormGroup({
     // Validators.pattern("^[0-9]*$") ожидает только цифры
-    userId: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[a-zA-Z.]*$")]),
+    userId: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[0-9]*$")]),
     id: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[0-9]*$")]),
     title: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Z.]*$")]),
     completed: new FormControl('', [Validators.required, completedValidator(), Validators.pattern("^[a-zA-Z]*$")]),
