@@ -41,10 +41,10 @@
     color: #3C3C3B;
     margin: 15px auto;
     margin-top: 30px;
-}
-
-.btn_delete:hover {
-    background-color: #3C3C3B;
-    border: 1px solid #f3b81d;
-    color: #f3b81d;
+    &:hover {
+        background-color: #3C3C3B;
+        border: 1px solid #f3b81d;
+        color: #f3b81d;
+        cursor: pointer;
+    }
 }
