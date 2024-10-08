@@ -6,6 +6,7 @@
 
         <mat-form-field class="example-full-width">
             <mat-label>Задание</mat-label>
+            <mat-icon matSuffix>mode_edit</mat-icon>
             <input matInput placeholder="Enter your assignment" formControlName="userId">
             <mat-error>Задание введено неправильно!</mat-error>
         </mat-form-field>
@@ -13,10 +14,11 @@
         <mat-form-field class="example-full-width">
             <mat-label>Id участника</mat-label>
             <input matInput placeholder="Enter the participant id" formControlName="id">
+            <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-error>Id введено неправильно!</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Задача</mat-label>
             <textarea matInput #message maxlength="256" placeholder="Enter your task"
                 formControlName="title"></textarea>
@@ -24,7 +26,7 @@
             <mat-error>Задача введено неправильно!</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Задача решена</mat-label>
             <mat-select formControlName="completed">
                 <mat-option value="Yes">Yes</mat-option>
@@ -33,7 +35,8 @@
             <mat-error>Решение введено неправильно!</mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" disabled [disabled]="form.invalid"
-            class="form_button"><mat-icon>add</mat-icon>CREATE TASK</button>
+        <button mat-raised-button color="primary" disabled [disabled]="form.invalid" class="form_button">
+            <mat-icon>download_done</mat-icon>
+            CREATE TASK</button>
     </form>
 </div>

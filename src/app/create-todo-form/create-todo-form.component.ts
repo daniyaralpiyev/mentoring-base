@@ -27,7 +27,6 @@ export class CreateTodoFormComponent {
   @Output()
   createTodoForm = new EventEmitter();
 
-
   public form = new FormGroup({
     userId: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[0-9]*$")]),
     id: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[0-9]*$")]),

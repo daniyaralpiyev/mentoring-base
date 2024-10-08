@@ -10,13 +10,15 @@
          элемента управления формы к объекту FormControlкоторый находится внутри объекта FormGroup -->
         <mat-form-field class="example-full-width">
             <mat-label>Name</mat-label>
-            <input matInput placeholder="Enter your name:" formControlName="name">
+            <input matInput type="text" placeholder="Enter your name:" formControlName="name">
+            <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-error>Имя введено неправильно!</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Enter your Email:" formControlName="email">
+            <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-error>Email введено неправильно!</mat-error>
         </mat-form-field>
 
@@ -24,6 +26,7 @@
         <mat-form-field class="example-full-width">
             <mat-label>Website</mat-label>
             <input matInput placeholder="Enter your Website:" formControlName="website">
+            <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-error>Веб-сайт введено неправильно!</mat-error>
         </mat-form-field>
 
@@ -31,6 +34,7 @@
         <mat-form-field class="example-full-width">
             <mat-label>Company name</mat-label>
             <input matInput placeholder="Enter your Website:" formControlName="companyName">
+            <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-error>Страна введено неправильно!</mat-error>
         </mat-form-field>
 

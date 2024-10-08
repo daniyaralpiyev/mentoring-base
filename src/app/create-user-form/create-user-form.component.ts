@@ -19,7 +19,6 @@ export class CreateUserFormComponent {
   // и здесь createUserForm передали в user-list.component.html
   @Output()
   createUserForm = new EventEmitter();
-
   // подключаем к html переменную form
   // класс FormGroup обеденяет все FormControl так как FormControl это элемент класса FormGroup
   public form = new FormGroup({
