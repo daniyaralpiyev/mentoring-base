@@ -6,30 +6,22 @@
 
         <mat-form-field class="example-full-width">
             <mat-label>Задание</mat-label>
-            <input matInput placeholder="Enter your assignment" formControlName="userId" required>
-            <div *ngIf="form.controls.userId.invalid && (form.controls.userId.dirty || form.controls.userId.touched)"
-                class="alert">
-                <div *ngIf="form.controls.userId.errors">Задание введено неправильно!</div>
-            </div>
+            <input matInput placeholder="Enter your assignment" formControlName="userId">
+            <mat-error>Задание введено неправильно!</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Id участника</mat-label>
-            <input matInput placeholder="Enter the participant id" formControlName="id" required>
-            <div *ngIf="form.controls.id.invalid && (form.controls.id.dirty || form.controls.id.touched)" class="alert">
-                <div *ngIf="form.controls.id.errors">Id введено неправильно!</div>
-            </div>
+            <input matInput placeholder="Enter the participant id" formControlName="id">
+            <mat-error>Id введено неправильно!</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Задача</mat-label>
-            <textarea matInput #message maxlength="256" placeholder="Enter your task" formControlName="title"
-                required></textarea>
+            <textarea matInput #message maxlength="256" placeholder="Enter your task"
+                formControlName="title"></textarea>
             <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-            <div *ngIf="form.controls.title.invalid && (form.controls.title.dirty || form.controls.title.touched)"
-                class="alert">
-                <div *ngIf="form.controls.title.errors">Задача введено неправильно!</div>
-            </div>
+            <mat-error>Задача введено неправильно!</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -38,13 +30,10 @@
                 <mat-option value="Yes">Yes</mat-option>
                 <mat-option value="No">No</mat-option>
             </mat-select>
-            <div *ngIf="form.controls.completed.invalid && (form.controls.completed.dirty || form.controls.completed.touched)"
-                class="alert">
-                <div *ngIf="form.controls.completed.errors">Решение введено неправильно!</div>
-            </div>
+            <mat-error>Решение введено неправильно!</mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" disabled [disabled]="form.invalid" class="form_button">CREATE
-            TASK</button>
+        <button mat-raised-button color="primary" disabled [disabled]="form.invalid"
+            class="form_button"><mat-icon>add</mat-icon>CREATE TASK</button>
     </form>
 </div>

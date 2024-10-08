@@ -11,41 +11,27 @@
         <mat-form-field class="example-full-width">
             <mat-label>Name</mat-label>
             <input matInput placeholder="Enter your name:" formControlName="name">
-            <!-- проверка на то что пользователь ничего не ввел либо если кликнул на пустое поле в форме -->
-            <div *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)"
-                class="alert">
-                <div *ngIf="form.controls.name.errors">Имя введено неправильно!</div>
-            </div>
+            <mat-error>Имя введено неправильно!</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Enter your Email:" formControlName="email">
-            <div *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched)"
-                class="alert">
-                <div *ngIf="form.controls.email.errors">Email введено неправильно!</div>
-            </div>
+            <mat-error>Email введено неправильно!</mat-error>
         </mat-form-field>
 
 
         <mat-form-field class="example-full-width">
             <mat-label>Website</mat-label>
             <input matInput placeholder="Enter your Website:" formControlName="website">
-            <!-- проверка на то что пользователь ничего не ввел либо если кликнул на пустое поле в форме веб-сайт -->
-            <div *ngIf="form.controls.website.invalid && (form.controls.website.dirty || form.controls.website.touched)"
-                class="alert">
-                <div *ngIf="form.controls.website.errors">Веб-сайт введено неправильно!</div>
-            </div>
+            <mat-error>Веб-сайт введено неправильно!</mat-error>
         </mat-form-field>
 
 
         <mat-form-field class="example-full-width">
             <mat-label>Company name</mat-label>
             <input matInput placeholder="Enter your Website:" formControlName="companyName">
-            <div *ngIf="form.controls.companyName.invalid && (form.controls.companyName.dirty || form.controls.companyName.touched)"
-                class="alert">
-                <div *ngIf="form.controls.companyName.errors">Страна введено неправильно!</div>
-            </div>
+            <mat-error>Страна введено неправильно!</mat-error>
         </mat-form-field>
 
 
@@ -53,6 +39,7 @@
           по этому при клике на кнопку button срабатывает автоматический ngSubmit обработчик события,
           disabled означает не активный а [] скобки это привязка к свойству,
           form.invalid это означает что когда вся форма заполнится form.invalid станет true -->
-        <button mat-raised-button color="primary" [disabled]="form.invalid" class="form_button">CREATE USER</button>
+        <button mat-raised-button color="primary" [disabled]="form.invalid"
+            class="form_button"><mat-icon>add</mat-icon>CREATE USER</button>
     </form>
 </div>
