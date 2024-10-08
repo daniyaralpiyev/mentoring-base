@@ -2,7 +2,7 @@
 
     <h2 class="title">Create todo form</h2>
 
-    <form class="block_form" [formGroup]="form" (ngSubmit)="submitFormTodo()">
+    <form class="block_form" [formGroup]="form">
 
         <mat-form-field class="example-full-width">
             <mat-label>Задание</mat-label>
@@ -35,8 +35,10 @@
             <mat-error>Решение введено неправильно!</mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" disabled [disabled]="form.invalid" class="form_button">
+        <button (click)="submitFormTodo()" mat-raised-button color="primary" disabled [disabled]="form.invalid"
+            class="form_button">
             <mat-icon>download_done</mat-icon>
-            CREATE TASK</button>
+            CREATE TASK
+        </button>
     </form>
 </div>
