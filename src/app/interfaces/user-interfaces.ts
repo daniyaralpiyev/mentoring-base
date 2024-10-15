@@ -22,11 +22,12 @@ export interface UserInterface {
     };
 }
 
-// Типизируем interface
 export interface CreateUserInterface {
     id: number;
     name: string;
     email: string;
     website: string;
-    companyName: string;
+    company: {
+        name: string;
+    }
 }

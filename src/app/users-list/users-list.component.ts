@@ -4,7 +4,7 @@ import { UsersApiService } from "../users-api.service";
 import { UserCardComponent } from "./user-card/user-card.component";
 import { UsersService } from "../users.service";
 import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
-import { CreateUserInterface } from "../interfaces/user-interfaces";
+import { CreateUserInterface, UserInterface } from "../interfaces/user-interfaces";
 
 @Component({
     selector: 'app-users-list',
@@ -27,9 +27,9 @@ export class UsersListComponent {
             this.usersService.setUsers(response);
         });
 
-        this.usersService.users$.subscribe(
-            users => users
-        );
+        // this.usersService.users$.subscribe(
+        //     users => users
+        // );
     }
 
     deleteUser(id: number) {
@@ -38,11 +38,11 @@ export class UsersListComponent {
     }
 
     // находит и заменят определенные данные
-    editUser(user: CreateUserInterface) {
+    editUser(user: UserInterface) {
         this.usersService.editUser({
             ...user,
             company: {
-                name: user.companyName,
+                name: user.company.name,
             }
         });
     }
@@ -54,9 +54,8 @@ export class UsersListComponent {
             email: formData.email,
             website: formData.website,
             company: {
-                name: formData.companyName,
+                name: formData.company.name,
             },
         });
-        console.log('Данные формы: ', formData);
     }
 }
