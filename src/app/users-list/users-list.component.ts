@@ -37,7 +37,17 @@ export class UsersListComponent {
         this.usersService.deleteUser(id);
     }
 
-    createUser(formData: CreateUserInterface) {
+    // находит и заменят определенные данные
+    editUser(user: CreateUserInterface) {
+        this.usersService.editUser({
+            ...user,
+            company: {
+                name: user.companyName,
+            }
+        });
+    }
+
+    public createUser(formData: CreateUserInterface) {
         this.usersService.createUser({
             id: new Date().getTime(),
             name: formData.name,

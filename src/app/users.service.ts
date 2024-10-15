@@ -29,7 +29,7 @@ export class UsersService {
   editUser(editedUser: UserInterface) {
     this.usersSubject$.next(
       this.usersSubject$.value.map(
-        user => {
+        (user) => {
           if (user.id === editedUser.id) {
             // Если это тот юзера, которого нужно отредактировать, заменяем на обновленного юзера
             return editedUser;

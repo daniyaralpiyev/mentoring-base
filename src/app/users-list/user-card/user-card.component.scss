@@ -3,32 +3,29 @@
     color: #3C3C3B;
     font-family: 'Inter', sans-serif;
     margin: 0 auto;
-    margin-top: 15px;
+    margin-top: 30px;
     text-align: center;
 }
 
 .block_users_card {
-    height: 270px;
     width: 200px;
     flex-wrap: wrap;
     font-family: 'Inter', sans-serif;
     font-weight: 300;
     font-size: 15px;
-    padding: 15px 25px;
+    padding: 25px;
     border: 1px #3C3C3B solid;
     border-radius: 15px;
-    margin: 15px 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 15px;
     &:hover {
         background-color: #3C3C3B;
         color: #f3b81d;
     }
 }
 
-.block_users_card p {
-    margin-top: 25px;
-}
-
-.btn_delete {
+.btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,8 +36,8 @@
     border-radius: 30px;
     background: #f3b81d;
     color: #3C3C3B;
-    margin: 15px auto;
-    margin-top: 30px;
+    margin: 0 auto;
+    margin-top: 15px;
     &:hover {
         background-color: #3C3C3B;
         border: 1px solid #f3b81d;

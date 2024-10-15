@@ -1,0 +1,45 @@
+<form class="block_form" [formGroup]="form"
+    style="display: flex; flex-direction: column; width: 350px; height: 100%; padding: 25px;">
+
+    <h1>Изменени юзера</h1>
+
+    <!-- formControlName — это директива в Angular, которая используется для привязки
+     элемента управления формы к объекту FormControlкоторый находится внутри объекта FormGroup -->
+    <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="Enter your name:" formControlName="name">
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-error>Имя введено неправильно!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Enter your Email:" formControlName="email">
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-error>Email введено неправильно!</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Website</mat-label>
+        <input matInput placeholder="Enter your Website:" formControlName="website">
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-error>Веб-сайт введено неправильно!</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Company name</mat-label>
+        <input matInput placeholder="Enter your company:" formControlName="companyName">
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-error>Страна введено неправильно!</mat-error>
+    </mat-form-field>
+
+    <!-- [mat-dialog-close] это атрибут который будет закрываться с определенными данными который принял при закрытий из метода userWithUpdatedFields
+         но прежде [mat-dialog-close] импортировать в компоненте EditUserDialogComponent чтобы не было ошибок -->
+    <button type="submit" class="form_button" mat-raised-button color="primary" [disabled]="form.invalid"
+        [mat-dialog-close]="userWithUpdatedFields">
+        <mat-icon>download_done</mat-icon>
+        ИЗМЕНИТЬ ЮЗЕРА
+    </button>
+</form>
