@@ -30,7 +30,6 @@ export class CreateUserFormComponent {
     // [Validators.required] поле обязательно для заполнения
     // [Validators.email] поле ожидает обязательное заполнение c @
     // [Validators.minLength(5)] поле ожидает минимум 5 символов
-    id: new FormControl(new Date().getTime()),
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(5)]),
     website: new FormControl('', [Validators.required, Validators.minLength(5)]),

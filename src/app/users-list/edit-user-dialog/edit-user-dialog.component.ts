@@ -11,6 +11,7 @@ import { MyErrorStateMatcher } from "../../utils/error-state-matcher";
 @Component({
     selector: 'app-edit-user-dialog',
     templateUrl: './edit-user-dialog.component.html',
+    styleUrl: './edit-user-dialog.component.scss',
     standalone: true,
     imports: [MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, ReactiveFormsModule, MatDialogClose]
 })
@@ -27,7 +28,7 @@ export class EditUserDialogComponent {
     public form = new FormGroup({
         // здесь через this.data вставляем определенные значения в нужные поля которые передались
         // из компонента UserCardComponent.ts и по этому при открытии модалки поля не будут пустыми и будут запонены значениями
-        id: new FormControl(new Date().getTime()),
+        id: new FormControl(this.data.user.id),
         name: new FormControl(this.data.user.name, [Validators.required, Validators.minLength(2)]),
         email: new FormControl(this.data.user.email, [Validators.required, Validators.email]),
         website: new FormControl(this.data.user.website, [Validators.required, Validators.minLength(5)]),
