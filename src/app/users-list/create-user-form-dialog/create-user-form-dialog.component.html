@@ -1,1 +1,58 @@
-<p>create-user-form-dialog works!</p>
+<div class="content_form">
+    <h2 class="title">Create user form Dialog</h2>
+
+    <!-- [] скобки это привязка к какому то свойству, в [] скобки передаем данные formGroup это встроенный код angular к ней присвайваем from это наша созданная переменная из ts
+     и так же этот код делает так чтобы станица не перезагружалась при клике на кнопку -->
+    <form class="block_form" [formGroup]="form">
+        <!-- formControlName — это директива в Angular, которая используется для привязки
+         элемента управления формы к объекту FormControlкоторый находится внутри объекта FormGroup -->
+        <mat-form-field class="example-full-width">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" placeholder="Enter your name:" formControlName="name"
+                [errorStateMatcher]="matcher" />
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error
+                *ngIf="form.controls['name'].hasError('minlength') && !form.controls['name'].hasError('required')">Слишком
+                короткое!</mat-error>
+            <mat-error *ngIf="form.controls['name'].hasError('required')">Поле имя пустое!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Enter your Email:" formControlName="email"
+                [errorStateMatcher]="matcher" />
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error
+                *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">Неправильный
+                Email!</mat-error>
+            <mat-error *ngIf="form.controls['email'].hasError('required')">Поле Email пустое!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Website</mat-label>
+            <input matInput type="text" placeholder="Enter your Website:" formControlName="website" />
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error
+                *ngIf="form.controls['website'].hasError('minlength') && !form.controls['website'].hasError('required')">Слишком
+                короткий веб-сайт</mat-error>
+            <mat-error *ngIf="form.controls['website'].hasError('required')">Поле веб-сайт пустое!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" formGroupName="company">
+            <mat-label>Company name</mat-label>
+            <input matInput type="text" placeholder="Enter your Company:" formControlName="name" />
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error *ngIf="form.controls['name'].hasError('required')">Поле страна пустое!</mat-error>
+        </mat-form-field>
+
+        <!-- кнопка button по умолчанию уже с типом submit и button находится внутри тега from
+          по этому при клике на кнопку button срабатывает автоматический ngSubmit обработчик события,
+          disabled означает не активный а [] скобки это привязка к свойству,
+          form.invalid это означает что когда вся форма заполнится form.invalid станет true -->
+        <button type="submit" (click)="submitForm()" mat-raised-button color="primary" [disabled]="form.invalid"
+            class="form_button">
+            <mat-icon>add</mat-icon>
+            СОЗДАТЬ ЮЗЕРА
+        </button>
+    </form>
+</div>
