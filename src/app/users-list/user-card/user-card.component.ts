@@ -3,37 +3,56 @@ import { UserInterface } from "../../interfaces/user-interfaces";
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from "../edit-user-dialog/edit-user-dialog.component";
+import { DeleteUserDialogComponent } from "../delete-user-dialog/delete-user-dialog.component";
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-user-card',
     templateUrl: './user-card.component.html',
     styleUrl: './user-card.component.scss',
     standalone: true,
-    imports: [MatIconModule]
+    imports: [MatIconModule, MatSnackBarModule]
 })
 export class UserCardComponent {
     @Input()
-    user!: UserInterface;
+    public user!: UserInterface;
 
     // @Output() — декоратор, выбрасывает событие в наружу
     @Output()
     // EventEmitter — это класс Angular, он же обработчик события который создает событие
     // deleteUser используем в файле html и в файле html закидываем в круглые скобки(deleteUser_card)="здесь он будет вызывать другую переменную"
-    deleteUser = new EventEmitter();
+    public deleteUser = new EventEmitter<number>();
 
-    // onDeleteUser используем в файле html user-card.component.html
-    onDeleteUser(userId: number) {
-        // emit() выбрасывает и запускает событие и передаёт данные через userId родительскому компоненту.
-        this.deleteUser.emit(userId);
-    }
+    @Output()
+    // используем в users-list.component.html
+    editUser = new EventEmitter<UserInterface>();
 
     // этот код взяли из сайта angular material из вкладки Dialog для диалогового окна
     // MatDialog импортировали выше из angular material и так же переменную dialog используем ниже в методе openDialog()
     readonly dialog = inject(MatDialog);
 
-    @Output()
-    // используем в users-list.component.html
-    editUser = new EventEmitter();
+    private snackBar = inject(MatSnackBar);
+
+
+    openDeleteDialog(): void {
+        const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
+            width: '500px',
+            data: { user: this.user },
+        });
+
+        dialogRef.afterClosed().subscribe((result: Boolean | undefined) => {
+            if (result) {
+                this.deleteUser.emit(this.user.id);
+                this.snackBar.open('Пользователь удален', 'Ok', {
+                    duration: 1000
+                });
+            } else {
+                this.snackBar.open('Отмена удаления', 'Ok', {
+                    duration: 1000
+                });
+            }
+        });
+    }
 
     // метод openDialog взяли из сайта angular material из вкладки Dialog
     openDialog(): void {

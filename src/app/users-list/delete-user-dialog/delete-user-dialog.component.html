@@ -1,1 +1,7 @@
-<p>delete-user-dialog works!</p>
+<div class="container">
+    <h2 mat-dialog-title class="title">Удалить юзера {{this.data.user.name}}?</h2>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close class="content">Отмена</button>
+        <button mat-button cdkFocusInitial color="primary" [mat-dialog-close]="true">Удалить</button>
+    </mat-dialog-actions>
+</div>

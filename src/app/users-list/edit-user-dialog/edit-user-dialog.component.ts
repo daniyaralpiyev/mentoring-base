@@ -21,10 +21,6 @@ export class EditUserDialogComponent {
     // которая хранит код data: { user: this.user }(код находится в компоненте UserCardComponent.ts) при открытий модалки
     readonly data = inject<{ user: UserInterface }>(MAT_DIALOG_DATA);
 
-    constructor() {
-        console.log(this.data);
-    }
-
     public form = new FormGroup({
         // здесь через this.data вставляем определенные значения в нужные поля которые передались
         // из компонента UserCardComponent.ts и по этому при открытии модалки поля не будут пустыми и будут запонены значениями
