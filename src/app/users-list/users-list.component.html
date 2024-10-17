@@ -1,16 +1,10 @@
 <div class="name_title">
-    <app-create-user-form (createUserForm)="createUser($event)"></app-create-user-form>
+    <app-create-user-form (createUser)="createUser($event)"></app-create-user-form>
+    <!--  эмитим сюда данные (result) и с помощью метода createUser как-то их обрабатываем -->
+
 </div>
 <div class="content_users">
-
-    <!-- для async нужно импротировать AsyncPipe в файле UsersListComponent и async преобразует
-     данные из RXJS коробочки просто достает и отображает данные на сайте так же async
-     превращает usersService.usersSubject из типа BehaviorSubject в обычные данные
-     т.е. преобразует в обычный массив и затем ngFor работает без проблем -->
     <div *ngFor="let user of usersService.users$ | async">
-
-        <!-- квадратные скобки это связывание свойства (input binding) в Angular
-         в [] передаем определенные данные [user_input]="i" -->
         <app-user-card [user]="user" (deleteUser)="deleteUser($event)" (editUser)="editUser($event)">
         </app-user-card>
 
