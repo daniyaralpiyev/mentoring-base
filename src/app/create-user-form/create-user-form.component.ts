@@ -1,11 +1,10 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { MyErrorStateMatcher } from '../utils/error-state-matcher';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateUserInterface } from '../interfaces/user-interfaces';
 import { CreateUserFormDialogComponent } from '../users-list/create-user-form-dialog/create-user-form-dialog.component';
@@ -19,11 +18,8 @@ import { CreateUserFormDialogComponent } from '../users-list/create-user-form-di
 })
 export class CreateUserFormComponent {
 
-
-  matcher = new MyErrorStateMatcher();
-
   @Output()
-  createUser = new EventEmitter<CreateUserInterface>();
+  public createUser = new EventEmitter<CreateUserInterface>();
 
   readonly dialog = inject(MatDialog);
 
@@ -32,7 +28,8 @@ export class CreateUserFormComponent {
     const dialogRef = this.dialog.open(CreateUserFormDialogComponent);
 
     dialogRef.afterClosed().subscribe((result: CreateUserInterface) => {
-      if (result) { // если результат true (то-есть данные пришли), тогда эмитим(отправляем) эти данные в users-list
+      // если результат true (то-есть данные пришли), тогда эмитим(отправляем) эти данные в users-list
+      if (result) {
         this.createUser.emit(result);
         console.log('если result true, передаем эти данные:', result)
       };

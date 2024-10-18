@@ -18,23 +18,18 @@ import { CreateUserInterface } from '../../interfaces/user-interfaces';
 })
 export class CreateUserFormDialogComponent {
 
-  public readonly data = inject<{ user: CreateUserInterface }>(MAT_DIALOG_DATA); // бесполезная фигня, мы никакие данные не получаем. Мы же не изменяем уже существующего пользователя 
+  // бесполезная фигня, мы никакие данные не получаем. Мы же не изменяем уже существующего пользователя 
   // и не удаляем его по айди, как мы можем что-то передать, если на момент открытия модалки - его еще не существует. Надеюсь мысль уловил.
+  public readonly data = inject<{ user: CreateUserInterface }>(MAT_DIALOG_DATA);
 
-
-  @Output()
-  public createUserFormDialog = new EventEmitter();
+  public matcher = new MyErrorStateMatcher();
 
   public form = new FormGroup({
-
-    name: new FormControl('', [Validators.required, Validators.minLength(1)]), // убрал пару валидаторов, что бы не вводить постоянно по 10 символов.
-    email: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(1)]),
     website: new FormControl('', [Validators.required, Validators.minLength(1)]),
     company: new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(1)]),
     }),
   });
-
-  matcher = new MyErrorStateMatcher();
-
 }
