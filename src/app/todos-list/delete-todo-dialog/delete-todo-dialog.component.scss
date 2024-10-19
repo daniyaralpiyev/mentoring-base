@@ -1,0 +1,24 @@
+.title {
+    color: #f3b81d;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #3C3C3B;
+    padding-bottom: 15px;
+}
+
+.content_btn {
+    gap: 25px;
+}
+
+.btn {
+    width: 150px;
+    &:hover {
+        background: #f3b81d;
+        color: #3C3C3B;
+    }
+}
