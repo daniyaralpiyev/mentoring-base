@@ -25,7 +25,9 @@ export class CreateUserFormComponent {
 
   openCreateDialog(): void {
     // открываем модалку. Ничего внутрь не передаем, а зачем нам передавать data { user }? мы же его только создаем. То, что ты передашь будет = undefined.
-    const dialogRef = this.dialog.open(CreateUserFormDialogComponent);
+    const dialogRef = this.dialog.open(CreateUserFormDialogComponent, {
+      width: '500px'
+    });
 
     dialogRef.afterClosed().subscribe((result: CreateUserInterface) => {
       // если результат true (то-есть данные пришли), тогда эмитим(отправляем) эти данные в users-list

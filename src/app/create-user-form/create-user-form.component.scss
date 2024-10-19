@@ -1,5 +1,5 @@
 .content_form {
-    margin: 30px 30px 30px 0;
+    margin-top: 50px;
     width: 350px;
     display: flex;
     flex-direction: column;
@@ -17,19 +17,6 @@
 .title{
     font-size: 30px;
     margin-top: 30px;
-}
-
-.example-full-width {
-    display: flex;
-    flex-direction: column;
-    width: 250px;
-    margin: 0 auto;
-}
-
-.block_form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
 }
 
 .form_button {

@@ -13,7 +13,7 @@ import { MatIconModule } from "@angular/material/icon";
     templateUrl: './users-list.component.html',
     styleUrl: './users-list.component.scss',
     standalone: true,
-    imports: [NgFor, NgIf, UserCardComponent, AsyncPipe, CreateUserFormComponent, MatButtonModule, MatIconModule],
+    imports: [NgFor, NgIf, UserCardComponent, AsyncPipe, CreateUserFormComponent, MatButtonModule, MatIconModule, CreateUserFormComponent],
     // changeDetection: ChangeDetectionStrategy.OnPush для реактивных данных RXJS
     // с это функцией OnPush работа кода и сайта с данными идет намного быстрее
     changeDetection: ChangeDetectionStrategy.OnPush,
