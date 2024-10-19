@@ -43,11 +43,17 @@
         <mat-error *ngIf="form.controls['name'].hasError('required')">Поле страна пустое!</mat-error>
     </mat-form-field>
 
-    <!-- [mat-dialog-close] это атрибут который будет закрываться с определенными данными который принял при закрытий из метода userWithUpdatedFields
-         но прежде [mat-dialog-close] импортировать в компоненте EditUserDialogComponent чтобы не было ошибок -->
-    <button type="submit" class="form_button" mat-raised-button color="primary" [disabled]="form.invalid"
-        [mat-dialog-close]="userWithUpdatedFields">
-        <mat-icon>download_done</mat-icon>
-        ИЗМЕНИТЬ
-    </button>
+    <div class="content_btn">
+        <button type="submit" class="btn" mat-raised-button color="primary" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+            ОТМЕНА
+        </button>
+        <!-- [mat-dialog-close] это атрибут который будет закрываться с определенными данными который принял при закрытий из метода userWithUpdatedFields
+            но прежде [mat-dialog-close] импортировать в компоненте EditUserDialogComponent чтобы не было ошибок -->
+        <button type="submit" class="btn" mat-raised-button color="primary" [disabled]="form.invalid"
+            [mat-dialog-close]="userWithUpdatedFields">
+            <mat-icon>download_done</mat-icon>
+            ИЗМЕНИТЬ
+        </button>
+    </div>
 </form>

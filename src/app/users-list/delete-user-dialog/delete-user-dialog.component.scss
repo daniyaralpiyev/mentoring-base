@@ -2,10 +2,22 @@
     color: #f3b81d;
 }
 
-.content {
-    color: royalblue;
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #131416;
 }
 
-.container{
-    background: #131416;
+.content_btn {
+    gap: 50px;
+}
+
+.btn {
+    width: 150px;
+    &:hover {
+        background: #f3b81d;
+        color: #3C3C3B;
+    }
 }

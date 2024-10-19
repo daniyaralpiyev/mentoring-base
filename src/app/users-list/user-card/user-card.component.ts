@@ -43,11 +43,11 @@ export class UserCardComponent {
         dialogRef.afterClosed().subscribe((result: Boolean | undefined) => {
             if (result) {
                 this.deleteUser.emit(this.user.id);
-                this.snackBar.open('Пользователь удален', 'Ok', {
+                this.snackBar.open('Пользователь удален!', 'Ok', {
                     duration: 3000
                 });
             } else {
-                this.snackBar.open('Отмена удаления', 'Ok', {
+                this.snackBar.open('Отмена удаления!', 'Ok', {
                     duration: 3000
                 });
             }
@@ -68,6 +68,13 @@ export class UserCardComponent {
         dialogRef.afterClosed().subscribe(editResult => {
             if (editResult) {
                 this.editUser.emit(editResult);
+                this.snackBar.open('Пользователь изменен!', 'Ok', {
+                    duration: 3000
+                });
+            } else {
+                this.snackBar.open('Отмена изменения!', 'Ok', {
+                    duration: 3000
+                });
             };
         });
     }

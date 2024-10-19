@@ -16,3 +16,16 @@
 .example-full-width {
     width: 350px;
 }
+
+.content_btn {
+    display: flex;
+    gap: 30px;
+}
+
+.btn {
+    width: 150px;
+    &:hover {
+        background: #f3b81d;
+        color: #3C3C3B;
+    }
+}

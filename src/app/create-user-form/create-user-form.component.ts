@@ -37,11 +37,11 @@ export class CreateUserFormComponent {
       if (result) {
         this.createUser.emit(result);
         console.log('если result true, передаем эти данные:', result)
-        this.snackBar.open('Пользователь создан', 'Ok', {
+        this.snackBar.open('Пользователь создан!', 'Ok', {
           duration: 3000
         });
       } else {
-        this.snackBar.open('Отмена создания', 'Ok', {
+        this.snackBar.open('Отмена создания!', 'Ok', {
           duration: 3000
         });
       }
