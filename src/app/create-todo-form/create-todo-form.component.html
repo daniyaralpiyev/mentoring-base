@@ -4,17 +4,10 @@
 
     <form class="block_form" [formGroup]="form">
         <mat-form-field class="example-full-width">
-            <mat-label>Задание</mat-label>
+            <mat-label>Задание номер</mat-label>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <input matInput placeholder="Введите номер задания" formControlName="userId">
             <mat-error>Задание введено неправильно!</mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-            <mat-label>Id участника</mat-label>
-            <input matInput placeholder="Введите ID участника" formControlName="id">
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error>Id введено неправильно!</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="example-full-width">
