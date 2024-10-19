@@ -51,8 +51,12 @@
           form.invalid это означает что когда вся форма заполнится form.invalid станет true -->
         <button type="submit" [mat-dialog-close]="this.form.value" mat-raised-button color="primary"
             [disabled]="form.invalid" class="form_button">
-            <mat-icon>add</mat-icon>
-            СОЗДАТЬ ЮЗЕРА
+            <mat-icon>download_done</mat-icon>
+            СОЗДАТЬ
+        </button>
+        <button type="submit" mat-dialog-close mat-raised-button color="primary" class="form_button">
+            <mat-icon>close</mat-icon>
+            ОТМЕНА
         </button>
     </form>
 </div>

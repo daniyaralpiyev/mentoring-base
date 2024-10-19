@@ -44,21 +44,22 @@ export class UserCardComponent {
             if (result) {
                 this.deleteUser.emit(this.user.id);
                 this.snackBar.open('Пользователь удален', 'Ok', {
-                    duration: 1000
+                    duration: 3000
                 });
             } else {
                 this.snackBar.open('Отмена удаления', 'Ok', {
-                    duration: 1000
+                    duration: 3000
                 });
             }
         });
     }
 
     // метод openDialog взяли из сайта angular material из вкладки Dialog
-    openDialog(): void {
+    openEditDialog(): void {
         // EditUserDialogComponent это имя нашего компонента который сами создали
         // this.dialog.open() открывает компонент EditUserDialogComponent и внутрь передаем данные (вкратце this.dialog.open() открывает модалку)
         const dialogRef = this.dialog.open(EditUserDialogComponent, {
+            width: '500px',
             data: { user: this.user },
         });
 

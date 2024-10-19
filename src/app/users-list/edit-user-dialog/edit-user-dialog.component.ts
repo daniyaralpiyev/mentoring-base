@@ -7,13 +7,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { UserInterface } from "../../interfaces/user-interfaces";
 import { MyErrorStateMatcher } from "../../utils/error-state-matcher";
+import { NgFor, NgIf } from "@angular/common";
 
 @Component({
     selector: 'app-edit-user-dialog',
     templateUrl: './edit-user-dialog.component.html',
     styleUrl: './edit-user-dialog.component.scss',
     standalone: true,
-    imports: [MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, ReactiveFormsModule, MatDialogClose]
+    imports: [NgIf, NgFor, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, ReactiveFormsModule, MatDialogClose]
 })
 export class EditUserDialogComponent {
     // переменная data получает значение из метода openDialog который из компонента UserCardComponent.ts
