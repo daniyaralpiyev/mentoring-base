@@ -32,7 +32,7 @@ export class CreateUserFormComponent {
       width: '500px'
     });
 
-    dialogRef.afterClosed().subscribe((result: CreateUserInterface | undefined) => {
+    dialogRef.afterClosed().subscribe((result: CreateUserInterface) => {
       // если результат true (то-есть данные пришли), тогда эмитим(отправляем) эти данные в users-list
       if (result) {
         this.createUser.emit(result);
