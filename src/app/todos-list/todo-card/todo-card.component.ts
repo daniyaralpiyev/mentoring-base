@@ -22,7 +22,7 @@ export class TodoCardComponent {
   private snackBar = inject(MatSnackBar);
 
   @Output()
-  deleteUser = new EventEmitter<number>()
+  deleteTodo = new EventEmitter<number>()
 
   openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DeleteTodoDialogComponent, {
@@ -32,7 +32,7 @@ export class TodoCardComponent {
 
     dialogRef.afterClosed().subscribe((result: Boolean | undefined) => {
       if (result) {
-        this.deleteUser.emit(this.todo.id)
+        this.deleteTodo.emit(this.todo.id)
         this.snackBar.open('Задача удалена!', 'Ok', {
           duration: 3000
         });

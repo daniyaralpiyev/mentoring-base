@@ -12,6 +12,7 @@
     }
 }
 .block_todos_card {
+    overflow-wrap: break-word;
     height: 150px;
     width: 210px;
     font-size: 15px;
@@ -22,7 +23,7 @@
     font-weight: 600;
 }
 
-.btn_delete {
+.btn {
     display: flex;
     align-items: center;
     justify-content: center;
