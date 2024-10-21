@@ -6,8 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { CreateUserInterface } from '../../interfaces/user-interfaces';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-user-form-dialog',
@@ -24,13 +23,12 @@ export class CreateUserFormDialogComponent {
 
   public matcher = new MyErrorStateMatcher();
 
-
   public form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(1)]),
-    website: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(3)]),
+    website: new FormControl('', [Validators.required, Validators.minLength(3)]),
     company: new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     }),
   });
 }

@@ -14,12 +14,13 @@ import { CreateUserFormDialogComponent } from '../create-user-form-dialog/create
   styleUrl: './create-user-form-btn-add-dialog.component.scss'
 })
 export class CreateUserFormBtnAddDialogComponent {
+  
+  readonly dialog = inject(MatDialog);
+  
+  private snackBar = inject(MatSnackBar);
+  
   @Output()
   public createUserBtn = new EventEmitter<CreateUserInterface>();
-
-  readonly dialog = inject(MatDialog);
-
-  private snackBar = inject(MatSnackBar);
 
   openCreateBtnAddDialog(): void {
     // открываем модалку. Ничего внутрь не передаем, а зачем нам передавать data { user }? мы же его только создаем. То, что ты передашь будет = undefined.
