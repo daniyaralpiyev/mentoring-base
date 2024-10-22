@@ -1,0 +1,41 @@
+<div class="content_form">
+
+    <h2 class="title">Create todo form</h2>
+
+    <form class="block_form" [formGroup]="form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Задание номер</mat-label>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <input matInput placeholder="Введите номер задания" formControlName="userId">
+            <mat-error>Задание введено неправильно!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Задача</mat-label>
+            <textarea matInput #message maxlength="256" placeholder="Введите описание задачи"
+                formControlName="title"></textarea>
+            <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            <mat-error>Задача введено неправильно!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Задача решена</mat-label>
+            <mat-select placeholder="Введите Yes/No" formControlName="completed">
+                <mat-option [value]="true">Yes</mat-option>
+                <mat-option [value]="false">No</mat-option>
+            </mat-select>
+            <mat-error>Решение введено неправильно!</mat-error>
+        </mat-form-field>
+
+        <button [matDialogClose]="todoWithUpdatedFields" mat-raised-button color="primary" [disabled]="form.invalid"
+            class="form_button">
+            <mat-icon>download_done</mat-icon>
+            Изменить
+        </button>
+
+        <button matDialogClose="" matDialogClose="" mat-raised-button color="primary" class="form_button">
+            <mat-icon>close</mat-icon>
+            Отмена
+        </button>
+    </form>
+</div>

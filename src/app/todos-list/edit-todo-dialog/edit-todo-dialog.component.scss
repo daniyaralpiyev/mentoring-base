@@ -1,21 +1,17 @@
 .content_form {
-    width: 410px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid #3C3C3B;
     border-radius: 10px;
-    padding-bottom: 30px;
-    &:hover{
-        background-color: #3C3C3B;
-        color: #f3b81d;
-    }
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #e5e5e5;
 }
 
 .title{
     font-size: 30px;
-    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .example-full-width {
@@ -23,12 +19,6 @@
     flex-direction: column;
     width: 300px;
     margin: 0 auto;
-}
-
-.block_form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
 }
 
 .form_button {

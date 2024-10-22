@@ -35,6 +35,13 @@ export class TodosListComponent {
     this.todosService.deleteTodo(id);
   }
 
+  editTodo(todo: TodoInterface) {
+    this.todosService.editTodo({
+      ...todo,
+    });
+  }
+
+
   createTodo(formData: TodoInterface) {
     this.todosService.createTodo({
       userId: formData.userId,

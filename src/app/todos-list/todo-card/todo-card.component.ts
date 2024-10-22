@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteTodoDialogComponent } from '../delete-todo-dialog/delete-todo-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EditTodoDialogComponent } from '../edit-todo-dialog/edit-todo-dialog.component';
 
 @Component({
   selector: 'app-todo-card',
@@ -22,7 +23,7 @@ export class TodoCardComponent {
   private snackBar = inject(MatSnackBar);
 
   @Output()
-  deleteTodo = new EventEmitter<number>()
+  deleteTodo = new EventEmitter<number>();
 
   openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DeleteTodoDialogComponent, {
@@ -38,6 +39,29 @@ export class TodoCardComponent {
         });
       } else {
         this.snackBar.open('Отмена удаления!', 'Ok', {
+          duration: 3000
+        });
+      }
+    });
+  }
+
+  @Output()
+  editTodo = new EventEmitter<TodoInterface>();
+
+  openEditDialog(): void {
+    const dialogRef = this.dialog.open(EditTodoDialogComponent, {
+      width: '500px',
+      data: { todo: this.todo }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.editTodo.emit(result);
+        this.snackBar.open('Задача изменена!', 'Ok', {
+          duration: 3000
+        });
+      } else {
+        this.snackBar.open('Отмена изменения!', 'Ok', {
           duration: 3000
         });
       }
