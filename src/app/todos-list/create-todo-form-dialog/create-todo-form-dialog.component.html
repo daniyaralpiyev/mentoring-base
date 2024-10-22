@@ -21,8 +21,8 @@
         <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Задача решена</mat-label>
             <mat-select placeholder="Введите Yes/No" formControlName="completed">
-                <mat-option value="Yes">Yes</mat-option>
-                <mat-option value="No">No</mat-option>
+                <mat-option [value]="true">Yes</mat-option>
+                <mat-option [value]="false">No</mat-option>
             </mat-select>
             <mat-error>Решение введено неправильно!</mat-error>
         </mat-form-field>
