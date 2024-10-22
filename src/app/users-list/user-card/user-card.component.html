@@ -2,6 +2,7 @@
 
 <!-- style="width: 200px; height: 200px; border: 1px solid black; margin: 5px; padding: 10px;" -->
 <div class="block_users_card">
+
     <!-- <p>{{$any(i).name}}</p> лайфхак от Ильнура с $any()-->
     <div class="block_content">
         <p>{{user.name}}</p>
@@ -9,6 +10,7 @@
         <p>{{user.website}}</p>
         <p>{{user.company.name}}</p>
     </div>
+
     <button (click)="openEditDialog()" class="btn"><mat-icon>mode_edit</mat-icon>Изменить юзера</button>
     <button (click)="openDeleteDialog()" class="btn"><mat-icon>delete</mat-icon>Удалить юзера</button>
 </div>
