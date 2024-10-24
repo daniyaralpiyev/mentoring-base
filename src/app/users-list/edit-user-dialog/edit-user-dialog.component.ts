@@ -34,7 +34,7 @@ export class EditUserDialogComponent {
         id: new FormControl(this.data.user.id),
         name: new FormControl(this.data.user.name, [Validators.required, Validators.minLength(2)]),
         email: new FormControl(this.data.user.email, [Validators.required, Validators.email]),
-        website: new FormControl(this.data.user.website, [Validators.required, Validators.minLength(5)]),
+        website: new FormControl(this.data.user.website, [Validators.required, Validators.minLength(3)]),
         company: new FormGroup({
             name: new FormControl(this.data.user.company.name, [Validators.required, Validators.minLength(3)])
         })
@@ -43,10 +43,10 @@ export class EditUserDialogComponent {
     matcher = new MyErrorStateMatcher();
 
     // get это специальная конструкция которая позволяет к методу или классу обращаться как к полю который будет автоматический вычисляемым в момент обращения к нему
-    get userWithUpdatedFields() { // получает все данные через mat-dialog-close который навешали к кнопке button в файле edit-user-dialog.component.html
-        return {
-            ...this.form.value, // возвращается обновленное значение формы
-            id: this.data.user.id, // так же добавляем к нему id который уже лежал в (MAT_DIALOG_DATA);
-        };
-    }
+    // get userWithUpdatedFields() { // получает все данные через mat-dialog-close который навешали к кнопке button в файле edit-user-dialog.component.html
+    //     return {
+    //         ...this.form.value, // возвращается обновленное значение формы
+    //         id: this.data.user.id, // так же добавляем к нему id который уже лежал в (MAT_DIALOG_DATA);
+    //     };
+    // }
 }
