@@ -15,38 +15,18 @@ import { EditTodoDialogComponent } from '../edit-todo-dialog/edit-todo-dialog.co
   styleUrl: './todo-card.component.scss'
 })
 export class TodoCardComponent {
+
   @Input()
   todo!: TodoInterface;
 
   readonly dialog = inject(MatDialog);
-
   private snackBar = inject(MatSnackBar);
 
   @Output()
-  deleteTodo = new EventEmitter<number>();
-
-  openDeleteDialog(): void {
-    const dialogRef = this.dialog.open(DeleteTodoDialogComponent, {
-      width: '500px',
-      data: { todo: this.todo }
-    });
-
-    dialogRef.afterClosed().subscribe((result: Boolean | undefined) => {
-      if (result) {
-        this.deleteTodo.emit(this.todo.id)
-        this.snackBar.open('Задача удалена!', 'Ok', {
-          duration: 3000
-        });
-      } else {
-        this.snackBar.open('Отмена удаления!', 'Ok', {
-          duration: 3000
-        });
-      }
-    });
-  }
+  editTodo = new EventEmitter<TodoInterface>();
 
   @Output()
-  editTodo = new EventEmitter<TodoInterface>();
+  deleteTodo = new EventEmitter<number>();
 
   openEditDialog(): void {
     const dialogRef = this.dialog.open(EditTodoDialogComponent, {
@@ -62,6 +42,26 @@ export class TodoCardComponent {
         });
       } else {
         this.snackBar.open('Отмена изменения!', 'Ok', {
+          duration: 3000
+        });
+      }
+    });
+  }
+
+  openDeleteDialog(): void {
+    const dialogRef = this.dialog.open(DeleteTodoDialogComponent, {
+      width: '500px',
+      data: { todo: this.todo }
+    });
+
+    dialogRef.afterClosed().subscribe((result: Boolean | undefined) => {
+      if (result) {
+        this.deleteTodo.emit(this.todo.id)
+        this.snackBar.open('Задача удалена!', 'Ok', {
+          duration: 3000
+        });
+      } else {
+        this.snackBar.open('Отмена удаления!', 'Ok', {
           duration: 3000
         });
       }

@@ -7,16 +7,15 @@ import { TodoInterface } from '../../interfaces/todo-interfaces';
 import { CreateTodoFormDialogComponent } from '../create-todo-form-dialog/create-todo-form-dialog.component';
 
 @Component({
-  selector: 'app-create-todo-form-btn-add-dialog',
+  selector: 'app-create-todo-button',
   standalone: true,
   imports: [MatIconModule, MatButtonModule],
-  templateUrl: './create-todo-form-btn-add-dialog.component.html',
-  styleUrl: './create-todo-form-btn-add-dialog.component.scss'
+  templateUrl: './create-todo-button.component.html',
+  styleUrl: './create-todo-button.component.scss'
 })
 export class CreateTodoFormBtnAddDialogComponent {
 
   readonly dialog = inject(MatDialog);
-
   private snackBar = inject(MatSnackBar);
 
   @Output()
@@ -29,6 +28,7 @@ export class CreateTodoFormBtnAddDialogComponent {
 
     dialogRef.afterClosed().subscribe((result: TodoInterface) => {
       if (result) {
+        console.log(result)
         this.createTodoBtn.emit(result);
         this.snackBar.open('Задача создана!', 'Ok', {
           duration: 3000

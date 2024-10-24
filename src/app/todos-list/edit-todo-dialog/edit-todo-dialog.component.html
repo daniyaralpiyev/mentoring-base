@@ -27,8 +27,7 @@
             <mat-error>Решение введено неправильно!</mat-error>
         </mat-form-field>
 
-        <button [matDialogClose]="todoWithUpdatedFields" mat-raised-button color="primary" [disabled]="form.invalid"
-            class="form_button">
+        <button (click)="submitForm()" mat-raised-button color="primary" [disabled]="form.invalid" class="form_button">
             <mat-icon>download_done</mat-icon>
             Изменить
         </button>

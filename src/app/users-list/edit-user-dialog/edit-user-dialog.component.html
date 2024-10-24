@@ -51,7 +51,7 @@
         <!-- [mat-dialog-close] это атрибут который будет закрываться с определенными данными который принял при закрытий из метода userWithUpdatedFields
             но прежде [mat-dialog-close] импортировать в компоненте EditUserDialogComponent чтобы не было ошибок -->
         <button type="submit" class="btn" mat-raised-button color="primary" [disabled]="form.invalid"
-            [mat-dialog-close]="userWithUpdatedFields">
+            (click)="submitForm()">
             <mat-icon>download_done</mat-icon>
             ИЗМЕНИТЬ
         </button>

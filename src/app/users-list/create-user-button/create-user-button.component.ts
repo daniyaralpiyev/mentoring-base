@@ -7,18 +7,18 @@ import { CreateUserInterface } from '../../interfaces/user-interfaces';
 import { CreateUserFormDialogComponent } from '../create-user-form-dialog/create-user-form-dialog.component';
 
 @Component({
-  selector: 'app-create-user-form-btn-add-dialog',
+  selector: 'app-create-user-button',
   standalone: true,
   imports: [MatIconModule, MatButtonModule],
-  templateUrl: './create-user-form-btn-add-dialog.component.html',
-  styleUrl: './create-user-form-btn-add-dialog.component.scss'
+  templateUrl: './create-user-button.component.html',
+  styleUrl: './create-user-button.component.scss'
 })
 export class CreateUserFormBtnAddDialogComponent {
-  
+
   readonly dialog = inject(MatDialog);
-  
+
   private snackBar = inject(MatSnackBar);
-  
+
   @Output()
   public createUserBtn = new EventEmitter<CreateUserInterface>();
 

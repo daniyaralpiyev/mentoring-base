@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from '../../utils/error-state-matcher';
 import { NgFor, NgIf } from '@angular/common';
@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-user-form-dialog',
@@ -22,6 +22,12 @@ export class CreateUserFormDialogComponent {
   // public readonly data = inject<{ user: CreateUserInterface }>(MAT_DIALOG_DATA);
 
   public matcher = new MyErrorStateMatcher();
+
+  readonly dialogRef = inject(MatDialogRef<CreateUserFormDialogComponent>);
+
+  submitForm() {
+    this.dialogRef.close(this.form.value);
+  }
 
   public form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),

@@ -1,8 +1,8 @@
 import { NgIf, NgFor } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Validators, ValidatorFn, ValidationErrors, AbstractControl, ReactiveFormsModule, FormsModule, FormGroup, FormControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogClose } from '@angular/material/dialog';
+import { MatDialog, MatDialogClose, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -25,26 +25,15 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class CreateTodoFormDialogComponent {
 
-  // @Output()
-  // createTodoForm = new EventEmitter();
+  readonly dialogRef = inject(MatDialogRef<CreateTodoFormDialogComponent>);
+
+  submitForm() {
+    this.dialogRef.close(this.form.value);
+  }
 
   public form = new FormGroup({
     userId: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[0-9]*$")]),
     title: new FormControl('', [Validators.required, Validators.minLength(1), Validators.pattern("^[a-zA-Zа-яА-Я0-9.,_\\- ]*$")]),
     completed: new FormControl('', [Validators.required])
   });
-
-  // private getCompletedValue(): boolean {
-  //   const value = this.form.get('completed')?.value!.trim().toLowerCase();
-  //   if (value === 'yes') return true;
-  //   else return false
-  // }
-
-  // public submitFormTodo(): void {
-  //   const formData = { ...this.form.value };
-  //   this.createTodoForm.emit(formData);
-  //   this.form.reset();
-  // }
-  
-  
 }

@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MAT_DIALOG_DATA, MatDialogClose } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogClose, MatDialogRef } from "@angular/material/dialog";
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -21,6 +21,12 @@ export class EditUserDialogComponent {
     // MAT_DIALOG_DATA это ангуляровская штука которая достает данные из переменной data
     // которая хранит код data: { user: this.user }(код находится в компоненте UserCardComponent.ts) при открытий модалки
     readonly data = inject<{ user: UserInterface }>(MAT_DIALOG_DATA);
+
+    readonly dialogRef = inject(MatDialogRef<EditUserDialogComponent>);
+
+    submitForm() {
+        this.dialogRef.close({ ...this.form.value, id: this.data.user.id });
+    }
 
     public form = new FormGroup({
         // здесь через this.data вставляем определенные значения в нужные поля которые передались

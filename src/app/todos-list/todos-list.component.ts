@@ -5,7 +5,7 @@ import { TodosApiService } from '../todos-api.service';
 import { TodosService } from '../todos.service';
 import { CreateTodoFormComponent } from '../create-todo-form/create-todo-form.component';
 import { TodoInterface } from '../interfaces/todo-interfaces';
-import { CreateTodoFormBtnAddDialogComponent } from './create-todo-form-btn-add-dialog/create-todo-form-btn-add-dialog.component';
+import { CreateTodoFormBtnAddDialogComponent } from './create-todo-button/create-todo-button.component';
 
 @Component({
   selector: 'app-todos-list',
@@ -17,6 +17,7 @@ import { CreateTodoFormBtnAddDialogComponent } from './create-todo-form-btn-add-
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodosListComponent {
+
   readonly todosApiService = inject(TodosApiService);
   readonly todosService = inject(TodosService); // передаем из файла todos.service.ts
 
@@ -40,7 +41,6 @@ export class TodosListComponent {
       ...todo,
     });
   }
-
 
   createTodo(formData: TodoInterface) {
     this.todosService.createTodo({

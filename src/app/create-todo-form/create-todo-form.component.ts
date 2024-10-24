@@ -17,7 +17,6 @@ import { TodoInterface } from '../interfaces/todo-interfaces';
 export class CreateTodoFormComponent {
 
   readonly dialog = inject(MatDialog);
-
   private snackBar = inject(MatSnackBar);
 
   @Output()
