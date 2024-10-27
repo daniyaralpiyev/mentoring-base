@@ -5,24 +5,10 @@ import { Directive, ElementRef, HostBinding, HostListener, inject } from "@angul
     standalone: true, // standalone всегда должен быть true по умолчанию
 })
 export class RedDirective {
-
-    // HostListener декоратор отслеживает различные события
-    // При клике в браузере на красный элемент будет выдавать DIRECTIVE CLICK
-    // @HostListener('click')
-    // click() {
-    //     console.log("DIRECTIVE CLICK");
-    // }
-
-    // Просто при наведении в браузере на красный элемент будет выдавать Mouseenter
-    // @HostListener('mouseenter')
-    // mouseenter() {
-    //     console.log("Mouseenter");
-    // }
-
     color = 'green';
     textTransform = 'lowercase'
 
-    // С помощью HostBinding и get привязываем нужные поля
+    // Использование @HostBinding для привязки стилей:
     @HostBinding('style.backgroundColor')
     get backgroundColor() { // get пересчитает значение this.color который будет менять на mouseenter и на mouseleave
         return this.color;
@@ -33,6 +19,7 @@ export class RedDirective {
         return this.textTransform;
     };
 
+    // Отслеживание событий с помощью @HostListener:
     @HostListener('mouseenter') // При наведений мышкой на фон наш фон будет red
     enter() { // enter будет делать определенное действие при входе в элемент
         this.color = 'red';
@@ -46,4 +33,13 @@ export class RedDirective {
         this.textTransform = 'lowercase'
         console.log('white');
     }
+    // Типы директив:
+    //
+    // 1.Атрибутные директивы (attribute directives):
+    //      Эти директивы изменяют поведение или стиль существующих элементов.
+    //      Пример: ngClass, ngStyle, ngModel.
+    //
+    // 2.Структурные директивы (structural directives):
+    //      Эти директивы добавляют или удаляют элементы из DOM на основе определенных условий.
+    //      Пример: *ngIf, *ngFor, *ngSwitch.
 }

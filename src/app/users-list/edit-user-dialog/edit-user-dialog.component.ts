@@ -41,12 +41,4 @@ export class EditUserDialogComponent {
     });
 
     matcher = new MyErrorStateMatcher();
-
-    // get это специальная конструкция которая позволяет к методу или классу обращаться как к полю который будет автоматический вычисляемым в момент обращения к нему
-    // get userWithUpdatedFields() { // получает все данные через mat-dialog-close который навешали к кнопке button в файле edit-user-dialog.component.html
-    //     return {
-    //         ...this.form.value, // возвращается обновленное значение формы
-    //         id: this.data.user.id, // так же добавляем к нему id который уже лежал в (MAT_DIALOG_DATA);
-    //     };
-    // }
 }

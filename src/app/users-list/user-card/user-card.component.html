@@ -1,16 +1,20 @@
 <h1 class="item-word">КАРТОЧКА</h1>
 
 <!-- style="width: 200px; height: 200px; border: 1px solid black; margin: 5px; padding: 10px;" -->
-<div class="block_users_card">
+<div class="container">
 
     <!-- <p>{{$any(i).name}}</p> лайфхак от Ильнура с $any()-->
-    <div class="block_content">
+    <div class="block_user_card">
         <p red>{{user.name | customUpperCase}}</p>
-        <p red>{{user.email | customUpperCase}}</p>
-        <p red>{{user.website | customUpperCase}}</p>
-        <p red>{{user.company.name}}</p>
+        <p>{{user.email | customUpperCase}}</p>
+        <p>{{user.website | customUpperCase}}</p>
+        <p>{{user.company.name}}</p>
     </div>
 
-    <button red (click)="openEditDialog()" class="btn"><mat-icon>mode_edit</mat-icon>Изменить юзера</button>
-    <button red (click)="openDeleteDialog()" class="btn"><mat-icon>delete</mat-icon>Удалить юзера</button>
+    <button (click)="openEditDialog()" class="btn" mat-flat-button color="primary"
+        matTooltip="Изменить юзера"><mat-icon>mode_edit</mat-icon>Изменить
+        юзера</button>
+    <button (click)="openDeleteDialog()" class="btn" mat-flat-button color="primary"
+        matTooltip="Удалить юзера"><mat-icon>delete</mat-icon>Удалить
+        юзера</button>
 </div>

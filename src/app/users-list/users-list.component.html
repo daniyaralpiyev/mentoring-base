@@ -4,7 +4,7 @@
 
 </div>
 <div class="content_users">
-    <div *ngFor="let user of usersService.users$ | async">
+    <div *ngFor="let user of usersService.users$ | async" class="content_blocks">
         <app-user-card [user]="user" (deleteUser)="deleteUser($event)" (editUser)="editUser($event)">
         </app-user-card>
 

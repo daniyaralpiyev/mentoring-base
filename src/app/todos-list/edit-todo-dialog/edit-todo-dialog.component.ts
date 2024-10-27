@@ -33,11 +33,4 @@ export class EditTodoDialogComponent {
     title: new FormControl(this.data.todo.title, [Validators.required, Validators.minLength(1), Validators.pattern("^[a-zA-Zа-яА-Я0-9.,_\\- ]*$")]),
     completed: new FormControl(this.data.todo.completed, [Validators.required])
   });
-
-  // get todoWithUpdatedFields() { // получает все данные через mat-dialog-close который навешали к кнопке button в файле edit-user-dialog.component.html
-  //   return {
-  //     ...this.form.value, // возвращается обновленное значение формы
-  //     id: this.data.todo.id, // так же добавляем к нему id который уже лежал в (MAT_DIALOG_DATA);
-  //   };
-  // }
 }

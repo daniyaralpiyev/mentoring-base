@@ -1,10 +1,13 @@
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RemoveDashesPipe } from '../pipes/remove-dashes.pipe';
+import { ColorBasket } from '../directives/color-basket.directive';
 
 const showCatalogCompany = (textMenu: string) => textMenu;
+
 const text = showCatalogCompany('О компании');
 
 const menuItems = ['Каталог', 'Стройматериалы', ' Инструменты', ' Электрика', ' Интерьер и одежда'];
@@ -18,11 +21,15 @@ const upperCaseMenuItems = menuItems.map(
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink, MatButtonModule, MatIconModule],
+  imports: [NgIf, NgFor, RouterLink, MatButtonModule, MatIconModule, DatePipe, RemoveDashesPipe, ColorBasket],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+  readonly currentDate: Date = new Date();
+
+  readonly removeDashes: RemoveDashesPipe = new RemoveDashesPipe();
 
   title = 'mentoring-first-project';
 
@@ -45,9 +52,5 @@ export class HeaderComponent {
   readonly headerItem1 = 'Главная';
   readonly headerItem2 = 'О компании';
   readonly headerItem3 = 'Каталог';
-
-  readonly header2Item2 = 'Стройматериалы';
-  readonly header2Item3 = 'Инструменты';
-  readonly header2Item4 = 'Электрика';
-  readonly header2Item5 = 'Интерьер и одежда';
+  readonly headerDate = 'Дата'
 }
