@@ -6,11 +6,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreateTodoFormDialogComponent } from '../todos-list/create-todo-form-dialog/create-todo-form-dialog.component';
 import { TodoInterface } from '../interfaces/todo-interfaces';
+import { HoverShadow } from '../directives/hover-shadow.directive';
 
 @Component({
   selector: 'app-create-todo-form',
   standalone: true,
-  imports: [MatButtonModule, MatInputModule, MatIconModule],
+  imports: [MatButtonModule, MatInputModule, MatIconModule, HoverShadow],
   templateUrl: './create-todo-form.component.html',
   styleUrls: ['./create-todo-form.component.scss']
 })

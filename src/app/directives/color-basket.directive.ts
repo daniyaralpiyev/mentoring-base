@@ -2,7 +2,7 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[colorBasket]',
-  standalone: true
+  standalone: true,
 })
 export class ColorBasket {
 

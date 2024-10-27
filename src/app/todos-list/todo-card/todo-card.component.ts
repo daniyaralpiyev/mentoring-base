@@ -8,11 +8,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { EditTodoDialogComponent } from '../edit-todo-dialog/edit-todo-dialog.component';
 import { CustomDate } from '../../pipes/date-time.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HoverShadow } from '../../directives/hover-shadow.directive';
 
 @Component({
   selector: 'app-todo-card',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, CustomDate, MatTooltipModule],
+  imports: [MatButtonModule, MatIconModule, CustomDate, MatTooltipModule, HoverShadow],
   templateUrl: './todo-card.component.html',
   styleUrl: './todo-card.component.scss'
 })

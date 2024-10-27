@@ -9,11 +9,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateUserInterface } from '../interfaces/user-interfaces';
 import { CreateUserFormDialogComponent } from '../users-list/create-user-form-dialog/create-user-form-dialog.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { HoverShadow } from '../directives/hover-shadow.directive';
 
 @Component({
   selector: 'app-create-user-form',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgFor, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, CreateUserFormDialogComponent, MatSnackBarModule],
+  imports: [ReactiveFormsModule, NgIf, NgFor, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, CreateUserFormDialogComponent, MatSnackBarModule, HoverShadow],
   templateUrl: './create-user-form.component.html',
   styleUrl: './create-user-form.component.scss'
 })

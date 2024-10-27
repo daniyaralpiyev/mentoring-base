@@ -9,13 +9,14 @@ import { CustomUpperCasePipe } from "../../pipes/upper-case.pipe";
 import { RedDirective } from "../../directives/red.directive";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HoverShadow } from "../../directives/hover-shadow.directive";
 
 @Component({
     selector: 'app-user-card',
     templateUrl: './user-card.component.html',
     styleUrl: './user-card.component.scss',
     standalone: true,
-    imports: [MatIconModule, MatButtonModule, MatSnackBarModule, CustomUpperCasePipe, RedDirective, MatTooltipModule]
+    imports: [MatIconModule, MatButtonModule, MatSnackBarModule, CustomUpperCasePipe, RedDirective, MatTooltipModule, HoverShadow]
 })
 export class UserCardComponent {
     @Input()
