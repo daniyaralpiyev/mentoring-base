@@ -16,6 +16,7 @@
             <button><a (click)="changeMenuText()">Изменить текст</a></button>
             <button><a routerLink="users">Users</a></button>
             <button><a routerLink="todos">Todos</a></button>
+            <button><a routerLink="admin">Admin</a></button>
 
         </div>
 
@@ -38,6 +39,13 @@
                     <img class="header-img-shop-cart" src="/assets/shop-cart.svg" alt="логотип корзина">
                     <span>Пусто</span>
                 </button>
+            </div>
+
+            <div>
+                <button (click)="openDialog()" mat-flat-button color="primary" class="btn_enter"
+                    *ngIf="(userService.user$ | async) === null">Войти</button>
+                <button (click)="logout()" mat-flat-button color="primary" class="btn_exit"
+                    *ngIf="(userService.user$ | async) !== null">Выйти</button>
             </div>
 
         </div>
