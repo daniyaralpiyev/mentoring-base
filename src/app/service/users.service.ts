@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CreateUserInterface, UserInterface } from './interfaces/user-interfaces';
+import { CreateUserInterface, UserInterface } from '../interfaces/user-interfaces';
 
 // Паттерн singleton это паттерн проектирования, гарантирующий, что у класса будет только один экземпляр для всего приложения
 @Injectable({ providedIn: 'root' })
@@ -13,7 +13,7 @@ export class UsersService {
   private readonly usersSubject$ = new BehaviorSubject<UserInterface[]>([]); // [] — начальное значение, переданное в BehaviorSubject. В данном случае это пустой массив
 
   // можем обратиться к переменной users$ вне файла, использование asObservable()
-  // делает так, что другие частикода не могут изменять данные напрямую,
+  // делает так, что другие части кода не могут изменять данные напрямую,
   // что помогает соблюдать инкапсуляцию и правильную логику работы с данными
   public readonly users$ = this.usersSubject$.asObservable();
 
@@ -52,7 +52,7 @@ export class UsersService {
     );
 
     if (existingEmail !== undefined) {
-      alert('Такой email уже зарегестрирован!');
+      alert('Такой email уже зарегистрирован!');
     } else {
       // next перезаписывает данные по новому и возвращает обновленный массив
       // spread operator ... - это оператор расширения,
@@ -65,7 +65,7 @@ export class UsersService {
 
   // удаление юзера
   // перезаписывает на новый массив который равен старому но там будет удален юзер который мы туда положили
-  deleteUser(id: number) {
+  deleteUser(id: number):void {
     this.usersSubject$.next(
       this.usersSubject$.value.filter(
         item => item.id !== id // короткая версия if else

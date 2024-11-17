@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { TodoInterface } from "./interfaces/todo-interfaces";
+import { TodoInterface } from "../interfaces/todo-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class TodosService {
     // доступ только в этом файле
     private todosSubject$ = new BehaviorSubject<TodoInterface[]>([]);
-
     // переменную todos$ можно использовать вне файла
     todos$ = this.todosSubject$.asObservable();
 

@@ -8,16 +8,16 @@ import { ColorBasket } from '../directives/color-basket.directive';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthComponent } from '../auth/auth.component';
-import { UserService } from '../user.service';
+import { UserService } from '../service/user.service';
 
-const showCatalogCompany = (textMenu: string) => textMenu;
+const showCatalogCompany:(textMenu: string)=> string = (textMenu: string):string => textMenu;
 
-const text = showCatalogCompany('О компании');
+const text:string = showCatalogCompany('О компании');
 
-const menuItems = ['Каталог', 'Стройматериалы', ' Инструменты', ' Электрика', ' Интерьер и одежда'];
+const menuItems:string[] = ['Каталог', 'Стройматериалы', ' Инструменты', ' Электрика', ' Интерьер и одежда'];
 
-const upperCaseMenuItems = menuItems.map(
-  (item) => {
+const upperCaseMenuItems:string[] = menuItems.map(
+  (item:string):string => {
     return item.toUpperCase();
   }
 )
@@ -31,27 +31,27 @@ const upperCaseMenuItems = menuItems.map(
 })
 export class HeaderComponent {
 
-  private snackBar = inject(MatSnackBar);
+  private snackBar:MatSnackBar = inject(MatSnackBar);
 
-  private readonly dialog = inject(MatDialog);
+  private readonly dialog:MatDialog = inject(MatDialog);
 
-  public readonly userService = inject(UserService);
+  public readonly userService:UserService = inject(UserService);
 
   readonly currentDate: Date = new Date();
 
   readonly removeDashes: RemoveDashesPipe = new RemoveDashesPipe();
 
-  title = 'mentoring-first-project';
+  title:string = 'mentoring-first-project';
 
-  readonly aboutCompany = text;
+  readonly aboutCompany:string = text;
 
-  showCatalogCompany = false;
+  showCatalogCompany:boolean = false;
 
-  isUpperCase = true;
+  isUpperCase:boolean = true;
 
-  menuItems = upperCaseMenuItems;
+  menuItems:string[] = upperCaseMenuItems;
 
-  changeMenuText() {
+  changeMenuText():void {
     this.menuItems = upperCaseMenuItems.map(
       item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
     )
@@ -64,7 +64,7 @@ export class HeaderComponent {
   readonly headerItem3 = 'Каталог';
   readonly headerDate = 'Дата'
 
-  openDialog(): void {
+  public openDialog(): void {
     const dialogRef = this.dialog.open(AuthComponent, {
       width: '400px'
     });
