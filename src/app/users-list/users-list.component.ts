@@ -21,26 +21,16 @@ import { CreateUserFormBtnAddDialogComponent } from "./create-user-button/create
 })
 export class UsersListComponent {
     readonly usersApiService = inject(UsersApiService);
-    readonly usersService = inject(UsersService); // передали из файла users.service.ts
+    readonly usersService = inject(UsersService);
 
     constructor() {
-        // подписка => получение данных методом getUsers из файла users-api.service.ts
-        this.usersApiService.getUsers().subscribe((response: any) => {
-            // подписка => установка и загрузка данных методом setUsers из файла users.service.ts
-            this.usersService.setUsers(response);
-        });
-
-        // this.usersService.users$.subscribe(
-        //     users => users
-        // );
+      this.usersService.loadUsers();
     }
 
     deleteUser(id: number) {
-        // удаление id используя метод deleteUser из файла users.service.ts
         this.usersService.deleteUser(id);
     }
 
-    // находит и заменят определенные данные
     editUser(user: UserInterface) {
         this.usersService.editUser({
             ...user,

@@ -1,57 +1,69 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
-import { TodoInterface } from "../interfaces/todo-interfaces";
+import { inject, Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
+import { TodosApiService } from './todos-api.service';
+import {TodoInterface} from "../interfaces/todo-interfaces";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class TodosService {
-    // доступ только в этом файле
-    private todosSubject$ = new BehaviorSubject<TodoInterface[]>([]);
-    // переменную todos$ можно использовать вне файла
-    todos$ = this.todosSubject$.asObservable();
+  private readonly todosSubject$ = new BehaviorSubject<TodoInterface[]>([]);
+  public readonly todos$ = this.todosSubject$.asObservable();
+  private readonly localStorageService = inject(LocalStorageService);
+  private readonly todosApiService = inject(TodosApiService);
+  private readonly localStorageTodoKey = 'todos';
 
-    // установка todos
-    setTodos(todos: TodoInterface[]) {
-        this.todosSubject$.next(todos.slice(0, 15));
+  private setTodos(todosData: TodoInterface[]): void {
+    this.localStorageService.saveDataToLocalStorage<TodoInterface[]>(
+      this.localStorageTodoKey, todosData
+    );
+
+    this.todosSubject$.next(todosData);
+  }
+
+  public loadTodos() {
+    const localStorageTodos = this.localStorageService.getDataFromLocalStorage<TodoInterface[]>(
+      this.localStorageTodoKey
+    );
+
+    if (localStorageTodos) {
+      this.todosSubject$.next(localStorageTodos);
+    } else {
+      this.todosApiService.getTodos().subscribe((todoData: TodoInterface[]) => {
+        this.setTodos(todoData.slice(1, 11));
+      });
+    }
+  }
+
+  public editTodo(todo: TodoInterface): void {
+    const index = this.todosSubject$.value.findIndex(el => el.id === todo.id);
+
+    this.todosSubject$.value[index] = todo;
+    this.setTodos(this.todosSubject$.value);
+  }
+
+  public createTodo(todo: TodoInterface): void {
+    const todoExisting = this.todosSubject$.value.find(
+      currentElement => currentElement.title === todo.title
+    );
+
+    if (todoExisting === undefined) {
+      const newTodo = [...this.todosSubject$.value, todo];
+      this.setTodos(newTodo);
+    } else alert('Такой todo уже есть');
+  }
+
+  public deleteTodo(id: number): void {
+    const newArrayTodos = this.todosSubject$.value.filter(todo => todo.id !== id);
+    const findTodo = this.todosSubject$.value.find(todo => todo.id === id);
+
+    if (findTodo) {
+      this.setTodos(newArrayTodos);
     }
 
-    // изменение todos
-    editTodo(editedTodo: TodoInterface) {
-        // next перезаписывает данные по новому и возвращает обновленный массив после завершения функции map
-        this.todosSubject$.next(
-            this.todosSubject$.value.map(
-                todo => {
-                    if (todo.id === editedTodo.id) {
-                        return editedTodo;
-                    } else {
-                        return todo;
-                    }
-                }
-            )
-        );
+    if (!this.todosSubject$.value.length) {
+      this.localStorageService.removeLocalStorage(this.localStorageTodoKey);
     }
-
-    // создание todo
-    createTodo(todo: TodoInterface) {
-        const existingTask = this.todosSubject$.value.find(
-            (currentElement) => currentElement.title === todo.title
-        );
-
-        if (existingTask !== undefined) {
-            alert('Такое задание уже существует!');
-        } else {
-            this.todosSubject$.next([...this.todosSubject$.value, todo]);
-            alert('Новая задача успешно добавлена!');
-        }
-    }
-
-    // удаление todo
-    deleteTodo(id: number) {
-        // next перезаписывает данные по новому и возвращает обновленный массив
-        this.todosSubject$.next(
-            this.todosSubject$.value.filter(
-                // метод filter проверяет если id не равны оставляет, иначе исключает
-                item => item.id !== id
-            )
-        );
-    }
+  }
 }

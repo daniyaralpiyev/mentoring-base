@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
+import {UserInterface} from "../interfaces/user-interfaces";
 
 // Всегда когда создаем Сервис внутри Injectable() в фигурных скобках используем {providedIn: 'root'}
 // это говорит что у нас будет один экземпляр класса UsersApiService на все приложение
@@ -15,6 +16,6 @@ export class UsersApiService {
     // отправить HTTP GET-запрос на адрес https://jsonplaceholder.typicode.com/users.
     // Это запрос на URL который получает данные пользователей с базы данных через бэкенд.
     getUsers() {
-        return this.apiService.get('https://jsonplaceholder.typicode.com/users');
+        return this.apiService.get<UserInterface[]>('https://jsonplaceholder.typicode.com/users');
     }
 }

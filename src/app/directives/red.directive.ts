@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostBinding, HostListener, inject } from "@angul
     standalone: true, // standalone всегда должен быть true по умолчанию
 })
 export class RedDirective {
-    color = 'green';
+    color = 'gray';
     textTransform = 'lowercase'
 
     // Использование @HostBinding для привязки стилей:

@@ -1,75 +1,71 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CreateUserInterface, UserInterface } from '../interfaces/user-interfaces';
+import {UsersApiService} from "./users-api.service";
+import {LocalStorageService} from "./local-storage.service";
 
-// Паттерн singleton это паттерн проектирования, гарантирующий, что у класса будет только один экземпляр для всего приложения
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class UsersService {
-
-  // private - ограничение доступа и переменная доступна только в этом файле
-  // <User[]> это generic, указывающий, что BehaviorSubject будет работать с массивом объектов типа User.
-  // переменная со знаком $ говорит что это переменная, которая представляет собой экземпляр BehaviorSubject.
-  // BehaviorSubject это один из типов Subject'ов в RxJS (библиотека для реактивного программирования в Angular).
-  private readonly usersSubject$ = new BehaviorSubject<UserInterface[]>([]); // [] — начальное значение, переданное в BehaviorSubject. В данном случае это пустой массив
-
-  // можем обратиться к переменной users$ вне файла, использование asObservable()
-  // делает так, что другие части кода не могут изменять данные напрямую,
-  // что помогает соблюдать инкапсуляцию и правильную логику работы с данными
+  private readonly usersSubject$ = new BehaviorSubject<UserInterface[]>([]);
   public readonly users$ = this.usersSubject$.asObservable();
+  private readonly localStorageService = inject(LocalStorageService);
+  private readonly usersApiService = inject(UsersApiService);
+  private readonly localStorageUsersKey = 'users';
 
-
-  // установка юзеров
-  // вместо User[] можем писать Array<User> кому как удобно без разницы
-  setUsers(users: UserInterface[]) {
-    // next() метод используется для обновления данных в BehaviorSubject.
-    this.usersSubject$.next(users);
-  }
-
-  // изменение юзера
-  // перезаписывает весь массив при этом элемент который изменили подменяет на новый а все остальные не трогает
-  editUser(editedUser: UserInterface) {
-    this.usersSubject$.next(
-      this.usersSubject$.value.map(
-        user => {
-          if (user.id === editedUser.id) {
-            // Если это тот юзера, которого нужно отредактировать, заменяем на обновленного юзера
-            return editedUser;
-          } else {
-            // Иначе возвращаем старого юзера без изменений
-            return user;
-          }
-        }
-      )
-    );
-  }
-
-  // создание юзера
-  // перезаписывает на новый массив который равен старому но к нему добавляет новый элемент
-  createUser(user: CreateUserInterface) {
-    // проверка на одинаковые email
-    const existingEmail = this.usersSubject$.value.find(
-      currentElement => currentElement.email === user.email
+  private setUsers(usersData: UserInterface[]) {
+    this.localStorageService.saveDataToLocalStorage<UserInterface[]>(
+      this.localStorageUsersKey, usersData
     );
 
-    if (existingEmail !== undefined) {
-      alert('Такой email уже зарегистрирован!');
+    this.usersSubject$.next(usersData);
+  }
+
+  public loadUsers(): void {
+    const localStorageUsers =
+      this.localStorageService.getDataFromLocalStorage<UserInterface[]>('users');
+
+    if (localStorageUsers) {
+      this.usersSubject$.next(localStorageUsers);
     } else {
-      // next перезаписывает данные по новому и возвращает обновленный массив
-      // spread operator ... - это оператор расширения,
-      // создает новый массив, который включает все элементы из this.users$
-      // и добавляет в конец новый объект user
-      this.usersSubject$.next([...this.usersSubject$.value, user]);
-      alert('Новый пользователь успешно добавлен!');
+      this.usersApiService.getUsers().subscribe((users: UserInterface[]) => {
+        this.setUsers(users);
+      });
     }
   }
 
-  // удаление юзера
-  // перезаписывает на новый массив который равен старому но там будет удален юзер который мы туда положили
-  deleteUser(id: number):void {
-    this.usersSubject$.next(
-      this.usersSubject$.value.filter(
-        item => item.id !== id // короткая версия if else
-      )
+  public editUser(user: UserInterface) :void{
+    const index = this.usersSubject$.value.findIndex(el => el.id === user.id);
+
+    this.usersSubject$.value[index] = user;
+    this.setUsers(this.usersSubject$.value);
+  }
+
+  public createUser(user: CreateUserInterface) {
+    const userExisting = this.usersSubject$.value.find(
+      currentElement => currentElement.email === user.email
     );
+    if (userExisting === undefined) {
+      const newUser = [...this.usersSubject$.value, user];
+      this.setUsers(newUser);
+    } else alert('Такой Email уже есть');
+  }
+
+  public deleteUser(userId: number):void {
+    const newArrayUsers = this.usersSubject$.value.filter(
+      user => user.id !== userId
+    );
+    const findUser = this.usersSubject$.value.find(
+      user => user.id === userId
+    );
+
+    if (findUser) {
+      this.setUsers(newArrayUsers);
+    }
+
+    if (!this.usersSubject$.value.length) {
+      this.localStorageService.removeLocalStorage(this.localStorageUsersKey);
+    }
   }
 }

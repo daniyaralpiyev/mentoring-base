@@ -10,29 +10,21 @@ import { CreateTodoFormBtnAddDialogComponent } from './create-todo-button/create
 @Component({
   selector: 'app-todos-list',
   standalone: true,
-  imports: [NgFor, NgIf, TodoCardComponent, AsyncPipe, CreateTodoFormComponent, CreateTodoFormBtnAddDialogComponent],
+  imports: [NgFor, TodoCardComponent, AsyncPipe, CreateTodoFormComponent, CreateTodoFormBtnAddDialogComponent],
   templateUrl: './todos-list.component.html',
   styleUrl: './todos-list.component.scss',
   // changeDetection: ChangeDetectionStrategy.OnPush делает работу с данными намного быстрее
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodosListComponent {
-
   readonly todosApiService = inject(TodosApiService);
-  readonly todosService = inject(TodosService); // передаем из файла todos.service.ts
+  readonly todosService = inject(TodosService);
 
   constructor() {
-    // подписка => получение данных методом getTodos
-    this.todosApiService.getTodos().subscribe(
-      (response: any) => {
-        // подписка => установка и загрузка данных методом setTodos
-        this.todosService.setTodos(response);
-      }
-    )
+    this.todosService.loadTodos()
   }
 
   deleteTodo(id: number) {
-    // удаления данных используя метод deleteTodo
     this.todosService.deleteTodo(id);
   }
 
