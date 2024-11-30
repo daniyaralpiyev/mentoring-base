@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import {IUser} from "../interfaces/user-admin.interface";
+import { IUser } from "../interfaces/user-admin.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class UserService {
   private user: IUser = {
     name: 'Daniyar',
     email: 'piranha0590@gmail.com',
-    isAdmin: null,
+    isAdmin: false,
   }
 
   public loginAsAdmin() {

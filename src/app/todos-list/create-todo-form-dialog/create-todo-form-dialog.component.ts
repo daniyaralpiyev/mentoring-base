@@ -1,8 +1,7 @@
-import { NgIf, NgFor } from '@angular/common';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { Validators, ValidatorFn, ValidationErrors, AbstractControl, ReactiveFormsModule, FormsModule, FormGroup, FormControl } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { Validators, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogClose, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogClose, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -19,7 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-create-todo-form-dialog',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgFor, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatDialogClose],
+  imports: [ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatDialogClose],
   templateUrl: './create-todo-form-dialog.component.html',
   styleUrl: './create-todo-form-dialog.component.scss'
 })

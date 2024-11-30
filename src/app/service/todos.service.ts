@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import { TodosApiService } from './todos-api.service';
-import {TodoInterface} from "../interfaces/todo-interfaces";
+import { TodoInterface } from "../interfaces/todo-interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,7 @@ export class TodosService {
   private readonly localStorageTodoKey = 'todos';
 
   private setTodos(todosData: TodoInterface[]): void {
-    this.localStorageService.saveDataToLocalStorage<TodoInterface[]>(
-      this.localStorageTodoKey, todosData
-    );
+    this.localStorageService.saveDataToLocalStorage<TodoInterface[]>(this.localStorageTodoKey, todosData);
 
     this.todosSubject$.next(todosData);
   }

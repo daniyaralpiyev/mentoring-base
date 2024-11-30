@@ -10,14 +10,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthComponent } from '../auth/auth.component';
 import { UserService } from '../service/user.service';
 
-const showCatalogCompany:(textMenu: string)=> string = (textMenu: string):string => textMenu;
+const showCatalogCompany: (textMenu: string) => string = (textMenu: string): string => textMenu;
 
-const text:string = showCatalogCompany('О компании');
+const text: string = showCatalogCompany('О компании');
 
-const menuItems:string[] = ['Каталог', 'Стройматериалы', ' Инструменты', ' Электрика', ' Интерьер и одежда'];
+const menuItems: string[] = ['Каталог', 'Стройматериалы', ' Инструменты', ' Электрика', ' Интерьер и одежда'];
 
-const upperCaseMenuItems:string[] = menuItems.map(
-  (item:string):string => {
+const upperCaseMenuItems: string[] = menuItems.map(
+  (item: string): string => {
     return item.toUpperCase();
   }
 )
@@ -31,27 +31,27 @@ const upperCaseMenuItems:string[] = menuItems.map(
 })
 export class HeaderComponent {
 
-  private snackBar:MatSnackBar = inject(MatSnackBar);
+  private snackBar: MatSnackBar = inject(MatSnackBar);
 
-  private readonly dialog:MatDialog = inject(MatDialog);
+  private readonly dialog: MatDialog = inject(MatDialog);
 
-  public readonly userService:UserService = inject(UserService);
+  public readonly userService: UserService = inject(UserService);
 
   readonly currentDate: Date = new Date();
 
   readonly removeDashes: RemoveDashesPipe = new RemoveDashesPipe();
 
-  title:string = 'mentoring-first-project';
+  title: string = 'mentoring-first-project';
 
-  readonly aboutCompany:string = text;
+  readonly aboutCompany: string = text;
 
-  showCatalogCompany:boolean = false;
+  showCatalogCompany: boolean = false;
 
-  isUpperCase:boolean = true;
+  isUpperCase: boolean = true;
 
-  menuItems:string[] = upperCaseMenuItems;
+  menuItems: string[] = upperCaseMenuItems;
 
-  changeMenuText():void {
+  changeMenuText(): void {
     this.menuItems = upperCaseMenuItems.map(
       item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
     )
@@ -70,7 +70,7 @@ export class HeaderComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: string) => {
-      console.log('Результат подписки после Диалогового окна', result)
+      console.log('Результат подписки после Диалогового окна', result);
       if (result === 'admin') {
         this.userService.loginAsAdmin();
         this.snackBar.open('Вы зашли как Админ', 'Ok', {

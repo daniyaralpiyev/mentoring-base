@@ -59,7 +59,7 @@ export class TodoCardComponent {
 
     dialogRef.afterClosed().subscribe((result: Boolean | undefined) => {
       if (result) {
-        this.deleteTodo.emit(this.todo.id)
+        this.deleteTodo.emit(this.todo.id);
         this.snackBar.open('Задача удалена!', 'Ok', {
           duration: 3000
         });

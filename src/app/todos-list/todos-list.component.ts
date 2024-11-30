@@ -21,7 +21,7 @@ export class TodosListComponent {
   readonly todosService = inject(TodosService);
 
   constructor() {
-    this.todosService.loadTodos()
+    this.todosService.loadTodos();
   }
 
   deleteTodo(id: number) {

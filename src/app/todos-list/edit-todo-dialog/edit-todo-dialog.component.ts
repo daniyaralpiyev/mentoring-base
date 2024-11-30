@@ -1,4 +1,3 @@
-import { NgIf, NgFor } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +12,7 @@ import { TodoInterface } from '../../interfaces/todo-interfaces';
 @Component({
   selector: 'app-edit-todo-dialog',
   standalone: true,
-  imports: [NgIf, NgFor, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatSelectModule, ReactiveFormsModule, MatDialogClose],
+  imports: [MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatSelectModule, ReactiveFormsModule, MatDialogClose],
   templateUrl: './edit-todo-dialog.component.html',
   styleUrl: './edit-todo-dialog.component.scss'
 })
