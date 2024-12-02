@@ -60,8 +60,13 @@ export class TodosService {
       this.setTodos(newArrayTodos);
     }
 
-    if (!this.todosSubject$.value.length) {
+    // if (!this.todosSubject$.value.length) {
+    //   this.localStorageService.removeLocalStorage(this.localStorageTodoKey);
+    // }
+
+    if (!localStorage.getItem(this.localStorageTodoKey)) {
       this.localStorageService.removeLocalStorage(this.localStorageTodoKey);
     }
+
   }
 }

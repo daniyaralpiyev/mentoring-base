@@ -64,8 +64,13 @@ export class UsersService {
       this.setUsers(newArrayUsers);
     }
 
-    if (!this.usersSubject$.value.length) {
+    // if (!this.usersSubject$.value.length) {
+    //   this.localStorageService.removeLocalStorage(this.localStorageUsersKey);
+    // }
+
+    if (!localStorage.getItem(this.localStorageUsersKey)) {
       this.localStorageService.removeLocalStorage(this.localStorageUsersKey);
     }
+
   }
 }
