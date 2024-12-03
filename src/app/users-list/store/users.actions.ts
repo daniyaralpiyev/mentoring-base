@@ -1,5 +1,5 @@
-import { createActionGroup, emptyProps, props } from "@ngrx/store";
-import { UserInterface } from "../../interfaces/user-interfaces";
+import {createActionGroup, emptyProps, props} from "@ngrx/store";
+import {UserInterface} from "../../interfaces/user-interfaces";
 
 export const UsersActions = createActionGroup({
   source: 'Users',

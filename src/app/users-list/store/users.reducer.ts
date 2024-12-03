@@ -20,11 +20,7 @@ export const userReducer = createReducer(
   on(UsersActions.edit, (state, payload) => ({
     ...state,
     users: state.users.map((user) => {
-      if (user.id === payload.user.id) {
-        return payload.user;
-      } else {
-        return user;
-      }
+      return user.id === payload.user.id ? payload.user : user;
     }),
   })),
 
