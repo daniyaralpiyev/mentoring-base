@@ -7,24 +7,24 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { UserInterface } from "../../interfaces/user-interfaces";
 import { MyErrorStateMatcher } from "../../utils/error-state-matcher";
-import { NgFor, NgIf } from "@angular/common";
+import { NgIf } from "@angular/common";
 
 @Component({
     selector: 'app-edit-user-dialog',
     templateUrl: './edit-user-dialog.component.html',
     styleUrl: './edit-user-dialog.component.scss',
     standalone: true,
-    imports: [NgIf, NgFor, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, ReactiveFormsModule, MatDialogClose]
+    imports: [NgIf, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, ReactiveFormsModule, MatDialogClose]
 })
 export class EditUserDialogComponent {
     // переменная data получает значение из метода openDialog который из компонента UserCardComponent.ts
     // MAT_DIALOG_DATA это ангуляровская штука которая достает данные из переменной data
     // которая хранит код data: { user: this.user }(код находится в компоненте UserCardComponent.ts) при открытий модалки
-    readonly data = inject<{ user: UserInterface }>(MAT_DIALOG_DATA);
+    public readonly data = inject<{ user: UserInterface }>(MAT_DIALOG_DATA);
 
-    readonly dialogRef = inject(MatDialogRef<EditUserDialogComponent>);
+    public readonly dialogRef = inject(MatDialogRef<EditUserDialogComponent>);
 
-    submitForm() {
+    public submitForm() {
         this.dialogRef.close({ ...this.form.value, id: this.data.user.id });
     }
 
@@ -40,5 +40,5 @@ export class EditUserDialogComponent {
         })
     });
 
-    matcher = new MyErrorStateMatcher();
+    public matcher = new MyErrorStateMatcher();
 }

@@ -1,16 +1,16 @@
-import {AsyncPipe, NgFor, NgIf} from "@angular/common";
-import {ChangeDetectionStrategy, Component, inject} from "@angular/core";
-import {UsersApiService} from "../service/users-api.service";
-import {UserCardComponent} from "./user-card/user-card.component";
-import {UsersService} from "../service/users.service";
-import {CreateUserFormComponent} from "../create-user-form/create-user-form.component";
-import {CreateUserInterface, UserInterface} from "../interfaces/user-interfaces";
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
-import {CreateUserFormBtnAddDialogComponent} from "./create-user-button/create-user-button.component";
-import {Store} from "@ngrx/store";
-import {UsersActions} from "./store/users.actions";
-import {selectUser} from "./store/users.selectors";
+import { AsyncPipe, NgFor, NgIf } from "@angular/common";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { UsersApiService } from "../service/users-api.service";
+import { UserCardComponent } from "./user-card/user-card.component";
+import { UsersService } from "../service/users.service";
+import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
+import { CreateUserInterface, UserInterface } from "../interfaces/user-interfaces";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { CreateUserFormBtnAddDialogComponent } from "./create-user-button/create-user-button.component";
+import { Store } from "@ngrx/store";
+import { UsersActions } from "./store/users.actions";
+import { selectUsers } from "./store/users.selectors";
 
 @Component({
   selector: 'app-users-list',
@@ -26,7 +26,7 @@ export class UsersListComponent {
   readonly usersApiService = inject(UsersApiService);
   readonly usersService = inject(UsersService);
   private readonly store = inject(Store); // инжектим store
-  public readonly users$ = this.store.select(selectUser);
+  public readonly users$ = this.store.select(selectUsers);
 
   constructor() {
     this.store.dispatch(UsersActions.load()); // дублируем setUsers с помощью this.store.dispatch()
@@ -34,7 +34,7 @@ export class UsersListComponent {
 
   public deleteUser(id: number) {
     // this.usersService.deleteUser(id);
-    this.store.dispatch(UsersActions.delete({id})); // дублируем deleteUser с помощью this.store.dispatch()
+    this.store.dispatch(UsersActions.delete({ id })); // дублируем deleteUser с помощью this.store.dispatch()
   }
 
   public editUser(user: UserInterface) {
@@ -44,7 +44,7 @@ export class UsersListComponent {
     //     name: user.company.name,
     //   }
     // });
-    this.store.dispatch(UsersActions.edit({user})); // дублируем editUser с помощью this.store.dispatch()
+    this.store.dispatch(UsersActions.edit({ user })); // дублируем editUser с помощью this.store.dispatch()
   }
 
   public createUser(formData: CreateUserInterface) {

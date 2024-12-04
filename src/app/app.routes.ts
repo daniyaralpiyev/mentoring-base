@@ -18,10 +18,10 @@ export const routes: Routes = [
         path: 'todos',
         component: TodosListComponent
     },
-    
+
     {
         path: 'admin',
         component: AdminComponent,
-        canActivate:[authGuard]
+        canActivate: [authGuard]
     }
 ];

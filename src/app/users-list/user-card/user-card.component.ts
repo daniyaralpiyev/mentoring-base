@@ -30,16 +30,16 @@ export class UserCardComponent {
 
     @Output()
     // используем в users-list.component.html
-    editUser = new EventEmitter<UserInterface>();
+    public editUser = new EventEmitter<UserInterface>();
 
     // этот код взяли из сайта angular material из вкладки Dialog для диалогового окна
     // MatDialog импортировали выше из angular material и так же переменную dialog используем ниже в методе openDialog()
-    readonly dialog = inject(MatDialog);
+    public readonly dialog = inject(MatDialog);
 
     private snackBar = inject(MatSnackBar);
 
 
-    openDeleteDialog(): void {
+    public openDeleteDialog(): void {
         const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
             width: '500px',
             data: { user: this.user },
@@ -60,7 +60,7 @@ export class UserCardComponent {
     }
 
     // метод openDialog взяли из сайта angular material из вкладки Dialog
-    openEditDialog(): void {
+    public openEditDialog(): void {
         // EditUserDialogComponent это имя нашего компонента который сами создали
         // this.dialog.open() открывает компонент EditUserDialogComponent и внутрь передаем данные (вкратце this.dialog.open() открывает модалку)
         const dialogRef = this.dialog.open(EditUserDialogComponent, {

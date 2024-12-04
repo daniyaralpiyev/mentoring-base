@@ -1,6 +1,6 @@
-import {TodoInterface} from "../../interfaces/todo-interfaces";
-import {createReducer, on} from "@ngrx/store";
-import {TodosActions} from "./todos.actions";
+import { TodoInterface } from "../../interfaces/todo-interfaces";
+import { createReducer, on } from "@ngrx/store";
+import { TodosActions } from "./todos.actions";
 
 const initialState: { todos: TodoInterface[] } = {
   todos: [],
@@ -10,7 +10,7 @@ export const todoReducer = createReducer(
   initialState,
   on(TodosActions.loadSuccess, (state, payload) => ({
     ...state,
-    todos: payload.todos.slice(1, 11),
+    todos: payload.todos.slice(0, 10),
   })),
   on(TodosActions.edit, (state, payload) => ({
     ...state,

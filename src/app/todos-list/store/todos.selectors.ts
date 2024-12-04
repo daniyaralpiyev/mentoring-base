@@ -11,7 +11,7 @@ interface AppState {
 
 export const selectTodosFeature = (state: AppState) => state.todos;
 
-export const selectTodo = createSelector(
+export const selectTodos = createSelector(
   selectTodosFeature,
   (state: TodoState) => state.todos
 )
